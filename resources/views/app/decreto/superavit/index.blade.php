@@ -1,0 +1,92 @@
+@extends('app.partials.base')
+
+@section('title', 'Superávits financeiros do decreto')
+
+@section('breadcrumb')
+    <div class="ui breadcrumb">
+        <div class="divider"> / </div>
+        <a class="section" href="{{ route('leis') }}">Leis</a>
+        <div class="divider"> / </div>
+        <a class="section" href="{{ route('lei.show', ['id' => $decreto->lei->id]) }}">Lei nº
+            {{ \App\Support\Helpers\Fmt::docnumber($decreto->lei->nr) }}</a>
+        <div class="divider"> / </div>
+        <a class="section" href="{{ route('decreto.show', ['id' => $decreto->id]) }}">Decreto nº
+            {{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}</a>
+        <div class="divider"> / </div>
+        <div class="active section">Superávits financeiros</div>
+    </div>
+@endsection
+
+@section('content')
+
+    @include('app.partials.header', [
+        'title' => 'Decreto nº ' . \App\Support\Helpers\Fmt::docnumber($decreto->nr),
+    ])
+
+    <div class="ui segment">
+
+        <table class="ui striped celled table">
+            <caption class="ui dividing header">Superávits financeiros lançados</caption>
+            <thead>
+                <tr>
+                    <th colspan="4">
+                        <a href="#valor" class="ui primary button">
+                            <i class="plus icon"></i>
+                            Novo
+                        </a>
+                    </th>
+                </tr>
+                <tr>
+                    <th class="center aligned">#</th>
+                    <th class="right aligned">Fonte</th>
+                    <th class="right aligned">Valor</th>
+                    <th class="center aligned">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($decreto->superavits as $superavit)
+                    <tr>
+                        <td class="center aligned">{{ $superavit->id }}</td>
+                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($superavit->fonte) }}
+                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::money($superavit->valor) }}</td>
+                        </td>
+                        <td class="center aligned">
+                            <a href="{{ route('decreto.superavit.delete', ['id' => $superavit->id, 'decreto_id' => $decreto->id]) }}"
+                                class="ui red icon button">
+                                <i class="trash icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5">Nenhum superávit financeiro lançado.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+            <tfoot>
+                <tr class="ui header">
+                    <th colspan="2" class="right aligned">Total</th>
+                    <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->superavits->sum('valor'))}}</th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+
+    <div class="ui segment">
+        @include('app.partials.form.superavit', [
+            'action' => route('decreto.superavit.store', ['decreto_id' => $decreto->id]),
+            'title' => 'Novo superavit',
+            'superavit' => null,
+            'decreto_id' => $decreto->id,
+        ])
+    </div>
+
+    @if (session('from') == 'decreto.superavit.store')
+        <script type="module">
+            document.getElementById('valor').focus();
+        </script>
+    @endif
+
+@endsection
