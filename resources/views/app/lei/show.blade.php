@@ -89,7 +89,7 @@
             </thead>
 
             <tbody>
-                @forelse ($lei->decretos as $decreto)
+                @forelse ($lei->decretos->sortByDesc('nr') as $decreto)
                     <tr>
                         <td class="center aligned">{{ $decreto->id }}</td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}</td>
