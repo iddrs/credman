@@ -79,6 +79,9 @@
             </thead>
             <tbody>
                 @forelse ($reducoes_fonte as $item)
+                    @if ($item->valor === $item->utilizado)
+                        @continue
+                    @endif
                     <tr>
                         <td class="center aligned">{{ $item->id }}</td>
                         <td class="right aligned">{{ $item->acesso }}</td>

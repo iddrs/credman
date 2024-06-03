@@ -48,7 +48,8 @@
                 </tr>
                 <tr @class([
                     'red',
-                    'green' => round($credito->valor == $credito->vinculos->sum('valor'), 2) !== 0.0,
+                    'green' =>
+                        round($credito->valor == $credito->vinculos->sum('valor'), 2) !== 0.0,
                 ])>
                     <td>Saldo para vincular</td>
                     <td class="right aligned">
@@ -76,6 +77,9 @@
             </thead>
             <tbody>
                 @forelse ($excessos_fonte as $item)
+                    @if ($item->valor === $item->utilizado)
+                        @continue
+                    @endif
                     <tr>
                         <td class="center aligned">{{ $item->id }}</td>
                         <td class="left aligned">

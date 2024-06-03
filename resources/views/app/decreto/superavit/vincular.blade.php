@@ -76,6 +76,9 @@
             </thead>
             <tbody>
                 @forelse ($superavits_fonte as $item)
+                    @if ($item->valor === $item->utilizado)
+                        @continue
+                    @endif
                     <tr>
                         <td class="center aligned">{{ $item->id }}</td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->fonte ?? null) }}
