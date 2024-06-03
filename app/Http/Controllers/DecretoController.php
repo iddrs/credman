@@ -372,9 +372,7 @@ class DecretoController extends Controller
             }
             $templateProcessor->cloneBlock('itemAnexo', 0, true, false, $replacements);
 
-
-
-            $outputFileName = "decretos/decreto_{$decreto->nr}-{$decreto->lei->exercicio}.docx";
+            $outputFileName = sprintf('decretos/DECRETO Nº %03d-%d credito adicional L%d.docx', $decreto->nr, $decreto->lei->exercicio, $decreto->lei->nr);
             $templateProcessor->saveAs(storage_path($outputFileName));
             return response()->download(storage_path($outputFileName));
         } catch (\Exception $th) {
