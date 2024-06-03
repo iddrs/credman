@@ -208,7 +208,7 @@ class DecretoController extends Controller
     public function testTotalCreditoVinculado($decreto_id)
     {
         $name = 'Total do decreto = Créditos vinculados';
-        $val1 = DB::table('decretos')->where('id', $decreto_id)->sum('vl_credito');
+        $val1 = round(DB::table('decretos')->where('id', $decreto_id)->sum('vl_credito') - DB::table('decretos')->where('id', $decreto_id)->sum('vl_reaberto'), 2);
         $val2 = DB::table('vinculos')->where('decreto_id', $decreto_id)->sum('valor');
         return compact('name', 'val1', 'val2');
     }
