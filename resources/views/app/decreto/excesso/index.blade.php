@@ -68,9 +68,19 @@
                 @endforelse
             </tbody>
             <tfoot>
+                <tr>
+                    <th colspan="3" class="right aligned">Total lançado</th>
+                    <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->excessos->sum('valor'))}}</th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th colspan="3" class="right aligned">Total do decreto</th>
+                    <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso)}}</th>
+                    <th></th>
+                </tr>
                 <tr class="ui header">
                     <th colspan="3" class="right aligned">Total</th>
-                    <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->excessos->sum('valor'))}}</th>
+                    <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso - $decreto->excessos->sum('valor'))}}</th>
                     <th></th>
                 </tr>
             </tfoot>

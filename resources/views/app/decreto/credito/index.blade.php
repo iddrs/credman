@@ -171,11 +171,25 @@
                     @endforelse
                 </tbody>
                 <tfoot>
-                    <tr class="ui header">
+                    <tr>
                         <th colspan="5" class="right aligned">
-                            Total
+                            Total lançado
                         </th>
                         <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->creditos->sum('valor')) }}</th>
+                        <th colspan="5"></th>
+                    </tr>
+                    <tr>
+                        <th colspan="5" class="right aligned">
+                            Total do decreto
+                        </th>
+                        <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_credito) }}</th>
+                        <th colspan="5"></th>
+                    </tr>
+                    <tr class="ui header">
+                        <th colspan="5" class="right aligned">
+                            Saldo a lançar
+                        </th>
+                        <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_credito - $decreto->creditos->sum('valor')) }}</th>
                         <th colspan="5"></th>
                     </tr>
                 </tfoot>
