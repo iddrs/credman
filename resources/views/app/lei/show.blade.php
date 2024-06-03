@@ -124,6 +124,7 @@
             'action' => route('decreto.store'),
             'title' => 'Novo decreto',
             'lei_id' => $lei->id,
+            'decreto' => null,
         ])
     </div>
 
