@@ -60,6 +60,64 @@
 
     </div>
 
+
+    <div class="ui segment">
+
+        <table class="ui striped celled table">
+            <caption class="ui dividing header">Excessos na mesma fonte a vincular</caption>
+            <thead>
+                <tr>
+                    <th class="center aligned">#</th>
+                    <th class="left aligned">Receita</th>
+                    <th class="right aligned">Fonte</th>
+                    <th class="right aligned">Valor disponível</th>
+                    <th class="center aligned">Vincular</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($excessos_fonte as $item)
+                    <tr>
+                        <td class="center aligned">{{ $item->id }}</td>
+                        <td class="left aligned">
+                            {{ \App\Support\Helpers\Fmt::receita($item->receita ?? null) }}</td>
+                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->fonte ?? null) }}
+                        </td>
+                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::money($item->valor - $item->utilizado) }}
+                        </td>
+                        <td class="right aligned">
+                            @if ($item->valor != $item->utilizado)
+                                @php
+                                    $saldo = $item->valor - $item->utilizado;
+                                    $maximo = $credito->valor - $credito->vinculos->sum('valor');
+                                    $valor = $saldo;
+                                    if ($saldo > $maximo) {
+                                        $valor = $maximo;
+                                    }
+                                @endphp
+                                <form
+                                    action="{{ route('decreto.credito.vincular.excesso.confirm', ['excesso_id' => $item->id, 'decreto_id' => $decreto->id, 'credito_id' => $credito->id]) }}"
+                                    method="POST" class="ui action input">
+                                    @csrf
+                                    <input type="number" name="valor" step="0.01" min="0.01" required
+                                        id="valor" value="{{ $valor }}" max="{{ $maximo }}">
+
+                                    <button type="submit" class="ui icon primary button enter-as-tab">
+                                        <i class="linkify icon"></i>
+                                    </button>
+                                </form>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5">Nenhum excesso na mesma fonte com saldo para vincular.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+
     <div class="ui segment">
 
         <table class="ui striped celled table">
@@ -120,64 +178,6 @@
             </tfoot>
         </table>
     </div>
-
-    <div class="ui segment">
-
-        <table class="ui striped celled table">
-            <caption class="ui dividing header">Excessos na mesma fonte a vincular</caption>
-            <thead>
-                <tr>
-                    <th class="center aligned">#</th>
-                    <th class="left aligned">Receita</th>
-                    <th class="right aligned">Fonte</th>
-                    <th class="right aligned">Valor disponível</th>
-                    <th class="center aligned">Vincular</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($excessos_fonte as $item)
-                    <tr>
-                        <td class="center aligned">{{ $item->id }}</td>
-                        <td class="left aligned">
-                            {{ \App\Support\Helpers\Fmt::receita($item->receita ?? null) }}</td>
-                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->fonte ?? null) }}
-                        </td>
-                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::money($item->valor - $item->utilizado) }}
-                        </td>
-                        <td class="right aligned">
-                            @if ($item->valor != $item->utilizado)
-                                @php
-                                    $saldo = $item->valor - $item->utilizado;
-                                    $maximo = $credito->valor - $credito->vinculos->sum('valor');
-                                    $valor = $saldo;
-                                    if ($saldo > $maximo) {
-                                        $valor = $maximo;
-                                    }
-                                @endphp
-                                <form
-                                    action="{{ route('decreto.credito.vincular.excesso.confirm', ['excesso_id' => $item->id, 'decreto_id' => $decreto->id, 'credito_id' => $credito->id]) }}"
-                                    method="POST" class="ui action input">
-                                    @csrf
-                                    <input type="number" name="valor" step="0.01" min="0.01" required
-                                        id="valor" value="{{ $valor }}" max="{{ $maximo }}">
-
-                                    <button type="submit" class="ui icon primary button enter-as-tab">
-                                        <i class="linkify icon"></i>
-                                    </button>
-                                </form>
-                            @endif
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="5">Nenhum excesso na mesma fonte com saldo para vincular.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-
-
 
 
     <div class="ui segment">

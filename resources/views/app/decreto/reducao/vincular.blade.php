@@ -63,6 +63,73 @@
     <div class="ui segment">
 
         <table class="ui striped celled table">
+            <caption class="ui dividing header">Reduções na mesma fonte a vincular</caption>
+            <thead>
+                <tr>
+                    <th class="center aligned">#</th>
+                    <th class="right aligned">Acesso</th>
+                    <th class="right aligned">Unid. Orç.</th>
+                    <th class="right aligned">Proj./Ativ.</th>
+                    <th class="right aligned">Despesa</th>
+                    <th class="right aligned">Fonte</th>
+                    <th class="right aligned">Complemento</th>
+                    <th class="right aligned">Valor disponível</th>
+                    <th class="center aligned">Vincular</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($reducoes_fonte as $item)
+                    <tr>
+                        <td class="center aligned">{{ $item->id }}</td>
+                        <td class="right aligned">{{ $item->acesso }}</td>
+                        <td class="right aligned">
+                            {{ \App\Support\Helpers\Fmt::uniorcam($item->uniorcam ?? null) }}</td>
+                        <td class="right aligned">
+                            {{ \App\Support\Helpers\Fmt::projativ($item->projativ ?? null) }}</td>
+                        <td class="right aligned">
+                            {{ \App\Support\Helpers\Fmt::despesa($item->despesa ?? null) }}</td>
+                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->fonte ?? null) }}
+                        </td>
+                        <td class="right aligned">{{ $item->rubrica->complemento ?? '' }}</td>
+                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::money($item->valor - $item->utilizado) }}
+                        </td>
+                        <td class="right aligned">
+                            @if ($item->valor != $item->utilizado)
+                                @php
+                                    $saldo = $item->valor - $item->utilizado;
+                                    $maximo = $credito->valor - $credito->vinculos->sum('valor');
+                                    $valor = $saldo;
+                                    if ($saldo > $maximo) {
+                                        $valor = $maximo;
+                                    }
+                                @endphp
+                                <form
+                                    action="{{ route('decreto.credito.vincular.reducao.confirm', ['reducao_id' => $item->id, 'decreto_id' => $decreto->id, 'credito_id' => $credito->id]) }}"
+                                    method="POST" class="ui action input">
+                                    @csrf
+                                    <input type="number" name="valor" step="0.01" min="0.01" required
+                                        id="valor" value="{{ $valor }}" max="{{ $maximo }}">
+
+                                    <button type="submit" class="ui icon primary button enter-as-tab">
+                                        <i class="linkify icon"></i>
+                                    </button>
+                                </form>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="11">Nenhuma redução na mesma fonte com saldo para vincular.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="ui segment">
+
+        <table class="ui striped celled table">
             <caption class="ui dividing header">Reduções vinculadas</caption>
             <thead>
                 <tr>
@@ -134,74 +201,6 @@
             </tfoot>
         </table>
     </div>
-
-    <div class="ui segment">
-
-        <table class="ui striped celled table">
-            <caption class="ui dividing header">Reduções na mesma fonte a vincular</caption>
-            <thead>
-                <tr>
-                    <th class="center aligned">#</th>
-                    <th class="right aligned">Acesso</th>
-                    <th class="right aligned">Unid. Orç.</th>
-                    <th class="right aligned">Proj./Ativ.</th>
-                    <th class="right aligned">Despesa</th>
-                    <th class="right aligned">Fonte</th>
-                    <th class="right aligned">Complemento</th>
-                    <th class="right aligned">Valor disponível</th>
-                    <th class="center aligned">Vincular</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse ($reducoes_fonte as $item)
-                    <tr>
-                        <td class="center aligned">{{ $item->id }}</td>
-                        <td class="right aligned">{{ $item->acesso }}</td>
-                        <td class="right aligned">
-                            {{ \App\Support\Helpers\Fmt::uniorcam($item->uniorcam ?? null) }}</td>
-                        <td class="right aligned">
-                            {{ \App\Support\Helpers\Fmt::projativ($item->projativ ?? null) }}</td>
-                        <td class="right aligned">
-                            {{ \App\Support\Helpers\Fmt::despesa($item->despesa ?? null) }}</td>
-                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->fonte ?? null) }}
-                        </td>
-                        <td class="right aligned">{{ $item->rubrica->complemento ?? '' }}</td>
-                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::money($item->valor - $item->utilizado) }}
-                        </td>
-                        <td class="right aligned">
-                            @if ($item->valor != $item->utilizado)
-                                @php
-                                    $saldo = $item->valor - $item->utilizado;
-                                    $maximo = $credito->valor - $credito->vinculos->sum('valor');
-                                    $valor = $saldo;
-                                    if ($saldo > $maximo) {
-                                        $valor = $maximo;
-                                    }
-                                @endphp
-                                <form
-                                    action="{{ route('decreto.credito.vincular.reducao.confirm', ['reducao_id' => $item->id, 'decreto_id' => $decreto->id, 'credito_id' => $credito->id]) }}"
-                                    method="POST" class="ui action input">
-                                    @csrf
-                                    <input type="number" name="valor" step="0.01" min="0.01" required
-                                        id="valor" value="{{ $valor }}" max="{{ $maximo }}">
-
-                                    <button type="submit" class="ui icon primary button enter-as-tab">
-                                        <i class="linkify icon"></i>
-                                    </button>
-                                </form>
-                            @endif
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="11">Nenhuma redução na mesma fonte com saldo para vincular.</td>
-                    </tr>
-                @endforelse
-            </tbody>
-        </table>
-    </div>
-
-
 
 
     <div class="ui segment">
