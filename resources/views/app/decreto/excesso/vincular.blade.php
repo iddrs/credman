@@ -48,7 +48,7 @@
                 </tr>
                 <tr @class([
                     'red',
-                    'green' => $credito->valor == $credito->vinculos->sum('valor'),
+                    'green' => round($credito->valor == $credito->vinculos->sum('valor'), 2) !== 0.0,
                 ])>
                     <td>Saldo para vincular</td>
                     <td class="right aligned">
