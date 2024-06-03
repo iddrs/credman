@@ -79,7 +79,7 @@
                                     </div>
                                 </span>
                                 <span class="right floated">
-                                    <div @class(["ui label", 'red' => $decreto->vl_credito - $decreto->creditos->sum('valor') != 0])>
+                                    <div @class(["ui label", 'red' => round($decreto->vl_credito - $decreto->creditos->sum('valor'), 2) != 0.0])>
                                         diferença:
                                         <div class="detail">
                                             {{ \App\Support\Helpers\Fmt::money($decreto->vl_credito - $decreto->creditos->sum('valor')) }}
@@ -155,7 +155,7 @@
                             </div>
                         </span>
                         <span class="right floated">
-                            <div @class(["ui label", 'red' => $decreto->vl_reducao - $decreto->reducoes->sum('valor') != 0])>
+                            <div @class(["ui label", 'red' => round($decreto->vl_reducao - $decreto->reducoes->sum('valor'), 2) != 0.0])>
                                 diferença:
                                 <div class="detail">
                                     {{ \App\Support\Helpers\Fmt::money($decreto->vl_reducao - $decreto->reducoes->sum('valor')) }}
@@ -193,7 +193,7 @@
                             </div>
                         </span>
                         <span class="right floated">
-                            <div @class(["ui label", 'red' => $decreto->vl_excesso - $decreto->excessos->sum('valor') != 0])>
+                            <div @class(["ui label", 'red' => round($decreto->vl_excesso - $decreto->excessos->sum('valor'), 2) != 0.0])>
                                 diferença:
                                 <div class="detail">
                                     {{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso - $decreto->excessos->sum('valor')) }}
@@ -236,7 +236,7 @@
                             </div>
                         </span>
                         <span class="right floated">
-                            <div @class(["ui label", 'red' => $decreto->vl_superavit - $decreto->superavits->sum('valor') != 0])>
+                            <div @class(["ui label", 'red' => round($decreto->vl_superavit - $decreto->superavits->sum('valor'), 2) != 0.0])>
                                 diferença:
                                 <div class="detail">
                                     {{ \App\Support\Helpers\Fmt::money($decreto->vl_superavit - $decreto->superavits->sum('valor')) }}
