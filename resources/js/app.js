@@ -104,3 +104,9 @@ function filterOrigemDoCredito() {
 }
 
 filterOrigemDoCredito();
+
+// Desabilita o formulário no submit
+
+$('form').on('submit', function (e) {
+    $(this).find('button[type="submit"]').prop('disabled', true);
+})
