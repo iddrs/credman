@@ -49,6 +49,48 @@
 
     </div>
 
+    <div class="ui menu">
+        <div class="item">
+            <div class="ui buttons">
+                @if (!$decreto->fechado)
+                    <a class="ui labeled icon green button"
+                        href="{{ route('decreto.creditos', ['decreto_id' => $decreto->id]) }}">
+                        <i class="linkify icon"></i>
+                        Vincular
+                    </a>
+                    <a class="ui labeled icon primary button" href="{{ route('decreto.verify', ['id' => $decreto->id]) }}">
+                        <i class="check circle outline icon"></i>
+                        Verificar
+                    </a>
+                @else
+                    <a class="ui labeled icon green button" href="{{ route('decreto.docx', ['id' => $decreto->id]) }}">
+                        <i class="file word outline icon"></i>
+                        Gerar MS Word
+                    </a>
+                    <a class="ui labeled icon teal button" href="{{ route('decreto.open', ['id' => $decreto->id]) }}">
+                        <i class="door open icon"></i>
+                        Reabrir
+                    </a>
+                @endif
+            </div>
+        </div>
+
+        @if (!$decreto->fechado)
+            <div class="right item">
+                <div class="ui buttons">
+                    <a class="ui labeled icon primary button" href="{{ route('decreto.edit', ['id' => $decreto->id]) }}">
+                        <i class="edit icon"></i>
+                        Editar
+                    </a>
+                    <a class="ui labeled icon negative button"
+                        href="{{ route('decreto.delete', ['id' => $decreto->id]) }}">
+                        <i class="trash icon"></i>
+                        Excluir
+                    </a>
+                </div>
+            </div>
+        @endif
+    </div>
 
     <div class="ui segment">
 
@@ -79,7 +121,12 @@
                                     </div>
                                 </span>
                                 <span class="right floated">
-                                    <div @class(["ui label", 'red' => round($decreto->vl_credito - $decreto->creditos->sum('valor'), 2) != 0.0])>
+                                    <div @class([
+                                        'ui label',
+                                        'red' =>
+                                            round($decreto->vl_credito - $decreto->creditos->sum('valor'), 2) !=
+                                            0.0,
+                                    ])>
                                         diferença:
                                         <div class="detail">
                                             {{ \App\Support\Helpers\Fmt::money($decreto->vl_credito - $decreto->creditos->sum('valor')) }}
@@ -88,7 +135,8 @@
                                 </span>
                             </div>
                             @if (!$decreto->fechado)
-                                <a href="{{ route('decreto.creditos', ['decreto_id' => $decreto->id]) }}" class="ui button">
+                                <a href="{{ route('decreto.creditos', ['decreto_id' => $decreto->id]) }}"
+                                    class="ui button">
                                     <i class="edit icon"></i> Gerenciar
                                 </a>
                             @endif
@@ -155,7 +203,12 @@
                             </div>
                         </span>
                         <span class="right floated">
-                            <div @class(["ui label", 'red' => round($decreto->vl_reducao - $decreto->reducoes->sum('valor'), 2) != 0.0])>
+                            <div @class([
+                                'ui label',
+                                'red' =>
+                                    round($decreto->vl_reducao - $decreto->reducoes->sum('valor'), 2) !=
+                                    0.0,
+                            ])>
                                 diferença:
                                 <div class="detail">
                                     {{ \App\Support\Helpers\Fmt::money($decreto->vl_reducao - $decreto->reducoes->sum('valor')) }}
@@ -193,7 +246,12 @@
                             </div>
                         </span>
                         <span class="right floated">
-                            <div @class(["ui label", 'red' => round($decreto->vl_excesso - $decreto->excessos->sum('valor'), 2) != 0.0])>
+                            <div @class([
+                                'ui label',
+                                'red' =>
+                                    round($decreto->vl_excesso - $decreto->excessos->sum('valor'), 2) !=
+                                    0.0,
+                            ])>
                                 diferença:
                                 <div class="detail">
                                     {{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso - $decreto->excessos->sum('valor')) }}
@@ -236,7 +294,12 @@
                             </div>
                         </span>
                         <span class="right floated">
-                            <div @class(["ui label", 'red' => round($decreto->vl_superavit - $decreto->superavits->sum('valor'), 2) != 0.0])>
+                            <div @class([
+                                'ui label',
+                                'red' =>
+                                    round($decreto->vl_superavit - $decreto->superavits->sum('valor'), 2) !=
+                                    0.0,
+                            ])>
                                 diferença:
                                 <div class="detail">
                                     {{ \App\Support\Helpers\Fmt::money($decreto->vl_superavit - $decreto->superavits->sum('valor')) }}
@@ -271,48 +334,6 @@
         </div>
 
 
-        <div class="ui menu">
-            <div class="item">
-                <div class="ui buttons">
-                    @if (!$decreto->fechado)
-                        <a class="ui labeled icon green button"
-                            href="{{ route('decreto.creditos', ['decreto_id' => $decreto->id]) }}">
-                            <i class="linkify icon"></i>
-                            Vincular
-                        </a>
-                        <a class="ui labeled icon primary button" href="{{ route('decreto.verify', ['id' => $decreto->id]) }}">
-                            <i class="check circle outline icon"></i>
-                            Verificar
-                        </a>
-                    @else
-                        <a class="ui labeled icon green button" href="{{ route('decreto.docx', ['id' => $decreto->id]) }}">
-                            <i class="file word outline icon"></i>
-                            Gerar MS Word
-                        </a>
-                        <a class="ui labeled icon teal button" href="{{ route('decreto.open', ['id' => $decreto->id]) }}">
-                            <i class="door open icon"></i>
-                            Reabrir
-                        </a>
-                    @endif
-                </div>
-            </div>
 
-            @if (!$decreto->fechado)
-                <div class="right item">
-                    <div class="ui buttons">
-                        <a class="ui labeled icon primary button"
-                            href="{{ route('decreto.edit', ['id' => $decreto->id]) }}">
-                            <i class="edit icon"></i>
-                            Editar
-                        </a>
-                        <a class="ui labeled icon negative button"
-                            href="{{ route('decreto.delete', ['id' => $decreto->id]) }}">
-                            <i class="trash icon"></i>
-                            Excluir
-                        </a>
-                    </div>
-                </div>
-            @endif
-        </div>
 
     @endsection
