@@ -4,9 +4,9 @@ namespace App\Support\Enums;
 
 enum TiposCredito: string
 {
-    case SUPLEMENTAR = 'Suplementar';
-    case ESPECIAL = 'Especial';
-    case EXTRAORDINARIO = 'Extraordinário';
+    case SUPLEMENTAR = '1 Suplementar';
+    case ESPECIAL = '2 Especial';
+    case EXTRAORDINARIO = '3 Extraordinário';
 
     public static function toArray(): array
     {

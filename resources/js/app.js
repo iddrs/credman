@@ -34,35 +34,35 @@ function filterOrigemDoCredito() {
     function getOptionReducao() {
         let opt = document.createElement('option');
         opt.value = 1;
-        opt.text = 'Redução';
+        opt.text = '1 Redução';
         return opt;
     }
 
     function getOptionSuperavit() {
         let opt = document.createElement('option');
         opt.value = 2;
-        opt.text = 'Superávit';
+        opt.text = '2 Superávit';
         return opt;
     }
 
     function getOptionExcesso() {
         let opt = document.createElement('option');
         opt.value = 3;
-        opt.text = 'Excesso';
+        opt.text = '3 Excesso';
         return opt;
     }
 
     function getOptionReabertura() {
         let opt = document.createElement('option');
         opt.value = 4;
-        opt.text = 'Reabertura';
+        opt.text = '4 Reabertura';
         return opt;
     }
 
     function getOptionNenhuma() {
         let opt = document.createElement('option');
         opt.value = 5;
-        opt.text = 'Nenhuma';
+        opt.text = '5 Nenhuma';
         return opt;
     }
 
@@ -80,21 +80,21 @@ function filterOrigemDoCredito() {
             case '1'://suplementar
                 console.log('suplementar');
                 origem.appendChild(getOptionReducao());
-                origem.appendChild(getOptionExcesso());
                 origem.appendChild(getOptionSuperavit());
+                origem.appendChild(getOptionExcesso());
                 break;
             case '2'://especial
                 console.log('especial');
                 origem.appendChild(getOptionReducao());
-                origem.appendChild(getOptionExcesso());
                 origem.appendChild(getOptionSuperavit());
+                origem.appendChild(getOptionExcesso());
                 origem.appendChild(getOptionReabertura());
                 break;
             case '3'://extraordinário
                 console.log('extraordinário');
                 origem.appendChild(getOptionReducao());
-                origem.appendChild(getOptionExcesso());
                 origem.appendChild(getOptionSuperavit());
+                origem.appendChild(getOptionExcesso());
                 origem.appendChild(getOptionReabertura());
                 origem.appendChild(getOptionNenhuma());
                 break;
