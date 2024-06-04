@@ -62,7 +62,7 @@
     </div>
 
 
-    <div class="ui segment">
+    <div class="ui green segment">
 
         <table class="ui striped celled table">
             <caption class="ui dividing header">Superávits na mesma fonte a vincular</caption>
@@ -120,7 +120,7 @@
     </div>
 
 
-    <div class="ui segment">
+    <div class="ui blue segment">
 
         <table class="ui striped celled table">
             <caption class="ui dividing header">Superávits vinculados</caption>
@@ -181,7 +181,7 @@
     </div>
 
 
-    <div class="ui segment">
+    <div class="ui red segment">
 
         <table class="ui striped celled table">
             <caption class="ui dividing header">Superávits em outras fontes a vincular</caption>

@@ -61,7 +61,7 @@
 
     </div>
 
-    <div class="ui segment">
+    <div class="ui green segment">
 
         <table class="ui striped celled table">
             <caption class="ui dividing header">Reduções na mesma fonte a vincular</caption>
@@ -132,7 +132,7 @@
     </div>
 
 
-    <div class="ui segment">
+    <div class="ui blue segment">
 
         <table class="ui striped celled table">
             <caption class="ui dividing header">Reduções vinculadas</caption>
@@ -211,7 +211,7 @@
     </div>
 
 
-    <div class="ui segment">
+    <div class="ui red segment">
 
         <table class="ui striped celled table">
             <caption class="ui dividing header">Reduções em outras fontes a vincular</caption>
