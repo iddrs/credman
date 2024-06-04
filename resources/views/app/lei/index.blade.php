@@ -44,7 +44,11 @@
             @forelse ($leis as $lei)
                 <tr>
                     {{-- <td class="center aligned">{{ $lei->id }}</td> --}}
-                    <td class="right aligned">{{ \App\Support\Helpers\Fmt::docnumber($lei->nr) }}</td>
+                    <td class="right aligned">
+                        <a href="{{ route('lei.show', ['id' => $lei->id]) }}">
+                            {{ \App\Support\Helpers\Fmt::docnumber($lei->nr) }}
+                        </a>
+                    </td>
                     <td class="center aligned">{{ \App\Support\Helpers\Fmt::date($lei->data) }}</td>
                     <td class="center aligned">{{ $lei->exercicio }}</td>
                     <td class="center aligned">{{ $lei->tipo }}</td>

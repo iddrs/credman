@@ -46,7 +46,11 @@
                     <tr>
 
                         {{-- <td class="center aligned">{{ $decreto->id }}</td> --}}
-                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}</td>
+                        <td class="right aligned">
+                            <a href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
+                                {{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}
+                            </a>
+                        </td>
                         <td class="center aligned">{{ \App\Support\Helpers\Fmt::date($decreto->data) }}</td>
                         <td class="center aligned">{{ \App\Support\Helpers\Fmt::docnumber($decreto->lei) }}</td>
                         <td class="center aligned">
