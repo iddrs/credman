@@ -16,6 +16,8 @@
 
     @include('app.partials.navbar')
 
+    <div style="margin-top: 5em"></div>
+
     <aside class="ui container">
         @yield('breadcrumb', '')
     </aside>

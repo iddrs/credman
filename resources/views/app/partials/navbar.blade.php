@@ -1,4 +1,4 @@
-<div class="ui menu"><!-- main menu -->
+<div class="ui top fixed menu"><!-- main menu -->
     <div class="header item">
         {{ config('app.name') }}
     </div>
