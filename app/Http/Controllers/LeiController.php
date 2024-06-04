@@ -63,7 +63,8 @@ class LeiController extends Controller
             $record = new Lei($validated);
             $record->user_id = auth()->user()->id;
             $record->save();
-            return redirect()->route('leis')->with('success', 'Lei cadastrada com sucesso!')->with('from', 'lei.store');
+            // return redirect()->route('leis')->with('success', 'Lei cadastrada com sucesso!')->with('from', 'lei.store');
+            return redirect()->route('lei.show', ['id' => $record->id])->with('success', 'Lei cadastrada com sucesso!');
         } catch (\Throwable $th) {
             return back()->withErrors(['errors' => [$th->getMessage()]]);
         }
