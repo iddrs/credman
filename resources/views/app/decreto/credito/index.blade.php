@@ -49,7 +49,7 @@
                             Saldo totalmente vinculado.
                         </div>
                         <div class="ui basic label">
-                            <i class="ui orange linkify icon"></i>
+                            <i class="ui blue linkify icon"></i>
                             Possui saldo a vincular.
                         </div>
                     </td>
@@ -94,7 +94,7 @@
                                     @case(1)
                                         @if ($credito->valor - $credito->vinculos->sum('valor') != 0)
                                             <a @class([
-                                                'ui orange icon button',
+                                                'ui blue icon button',
                                                 'disabled' => is_null($credito->rubrica),
                                             ])
                                                 href="{{ route('decreto.credito.vincular.reducao', ['credito_id' => $credito->id, 'decreto_id' => $decreto->id]) }}">
@@ -114,7 +114,7 @@
                                     @case(2)
                                         @if ($credito->valor - $credito->vinculos->sum('valor') != 0)
                                             <a @class([
-                                                'ui orange icon button',
+                                                'ui blue icon button',
                                                 'disabled' => is_null($credito->rubrica),
                                             ])
                                                 href="{{ route('decreto.credito.vincular.superavit', ['credito_id' => $credito->id, 'decreto_id' => $decreto->id]) }}">
@@ -134,7 +134,7 @@
                                     @case(3)
                                         @if ($credito->valor - $credito->vinculos->sum('valor') != 0)
                                             <a @class([
-                                                'ui orange icon button',
+                                                'ui blue icon button',
                                                 'disabled' => is_null($credito->rubrica),
                                             ])
                                                 href="{{ route('decreto.credito.vincular.excesso', ['credito_id' => $credito->id, 'decreto_id' => $decreto->id]) }}">
