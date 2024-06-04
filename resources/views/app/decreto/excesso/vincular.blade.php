@@ -68,7 +68,7 @@
             <caption class="ui dividing header">Excessos na mesma fonte a vincular</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="left aligned">Receita</th>
                     <th class="right aligned">Fonte</th>
                     <th class="right aligned">Valor disponível</th>
@@ -81,7 +81,7 @@
                         @continue
                     @endif
                     <tr>
-                        <td class="center aligned">{{ $item->id }}</td>
+                        {{-- <td class="center aligned">{{ $item->id }}</td> --}}
                         <td class="left aligned">
                             {{ \App\Support\Helpers\Fmt::receita($item->receita ?? null) }}</td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->fonte ?? null) }}
@@ -114,7 +114,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">Nenhum excesso na mesma fonte com saldo para vincular.</td>
+                        {{-- <td colspan="5">Nenhum excesso na mesma fonte com saldo para vincular.</td> --}}
+                        <td colspan="4">Nenhum excesso na mesma fonte com saldo para vincular.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -128,7 +129,7 @@
             <caption class="ui dividing header">Excessos vinculados</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="left aligned">Receita</th>
                     <th class="right aligned">Fonte</th>
                     <th class="right aligned">Valor</th>
@@ -141,7 +142,7 @@
                         '',
                         'red' => $item->excesso->fonte != $credito->rubrica->fonte,
                     ])>
-                        <td class="center aligned">{{ $item->id }}</td>
+                        {{-- <td class="center aligned">{{ $item->id }}</td> --}}
                         <td class="left aligned">
                             {{ \App\Support\Helpers\Fmt::receita($item->excesso->receita ?? null) }}</td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->excesso->fonte ?? null) }}
@@ -156,7 +157,8 @@
                     </tr>
                     @if (!is_null($item->justificativa))
                         <tr class="red">
-                            <td colspan="5">
+                            {{-- <td colspan="5"> --}}
+                            <td colspan="4">
                                 <div class="ui label">
                                     <i class="info circle icon"></i>
                                     Justificativa:
@@ -167,13 +169,15 @@
                     @endif
                 @empty
                     <tr>
-                        <td colspan="5">Nenhum excesso vinculado.</td>
+                        {{-- <td colspan="5">Nenhum excesso vinculado.</td> --}}
+                        <td colspan="4">Nenhum excesso vinculado.</td>
                     </tr>
                 @endforelse
             </tbody>
             <tfoot>
                 <tr class="ui header">
-                    <th class="right aligned" colspan="3">Total</th>
+                    {{-- <th class="right aligned" colspan="3">Total</th> --}}
+                    <th class="right aligned" colspan="2">Total</th>
                     <th class="right aligned">
                         {{ \App\Support\Helpers\Fmt::money($decreto->vinculos->whereNotNull('excesso_id')->where('credito_id', $credito->id)->sum('valor')) }}
                     </th>
@@ -190,7 +194,7 @@
             <caption class="ui dividing header">Excessos em outras fontes a vincular</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="left aligned">Receita</th>
                     <th class="right aligned">Fonte</th>
                     <th class="right aligned">Valor disponível</th>
@@ -199,8 +203,11 @@
             </thead>
             <tbody>
                 @forelse ($excessos_outras as $item)
+                    @if ($item->valor === $item->utilizado)
+                        @continue
+                    @endif
                     <tr>
-                        <td class="center aligned">{{ $item->id }}</td>
+                        {{-- <td class="center aligned">{{ $item->id }}</td> --}}
                         <td class="right aligned">
                             {{ \App\Support\Helpers\Fmt::receita($item->receita ?? null) }}</td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->fonte ?? null) }}
@@ -233,7 +240,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">Nenhum excesso em outras fontes com saldo para vincular.</td>
+                        {{-- <td colspan="5">Nenhum excesso em outras fontes com saldo para vincular.</td> --}}
+                        <td colspan="4">Nenhum excesso em outras fontes com saldo para vincular.</td>
                     </tr>
                 @endforelse
             </tbody>

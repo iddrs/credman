@@ -61,6 +61,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/decreto/{decreto_id}/credito/{credito_id}/vincular/superavit', [\App\Http\Controllers\VinculoController::class, 'superavit'])->name('decreto.credito.vincular.superavit')->middleware(DecretoIsClosed::class);
     Route::post('/decreto/{decreto_id}/credito/{credito_id}/vincular/superavit/{superavit_id}/store', [\App\Http\Controllers\VinculoController::class, 'storeSuperavit'])->name('decreto.credito.vincular.superavit.store')->middleware(DecretoIsClosed::class);
 });
+
 //vinculações
 Route::middleware('auth')->group(function () {
     Route::get('/decreto/{decreto_id}/credito/{credito_id}/vinculo/{id}/delete', [\App\Http\Controllers\VinculoController::class, 'destroy'])->name('decreto.credito.vinculo.delete')->middleware(DecretoIsClosed::class);

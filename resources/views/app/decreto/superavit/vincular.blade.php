@@ -68,7 +68,7 @@
             <caption class="ui dividing header">Superávits na mesma fonte a vincular</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Fonte</th>
                     <th class="right aligned">Valor disponível</th>
                     <th class="center aligned">Vincular</th>
@@ -80,7 +80,7 @@
                         @continue
                     @endif
                     <tr>
-                        <td class="center aligned">{{ $item->id }}</td>
+                        {{-- <td class="center aligned">{{ $item->id }}</td> --}}
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->fonte ?? null) }}
                         </td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::money($item->valor - $item->utilizado) }}
@@ -111,7 +111,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">Nenhum superávit na mesma fonte com saldo para vincular.</td>
+                        {{-- <td colspan="5">Nenhum superávit na mesma fonte com saldo para vincular.</td> --}}
+                        <td colspan="4">Nenhum superávit na mesma fonte com saldo para vincular.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -125,7 +126,7 @@
             <caption class="ui dividing header">Superávits vinculados</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Fonte</th>
                     <th class="right aligned">Valor</th>
                     <th class="center aligned">Ações</th>
@@ -137,7 +138,7 @@
                         '',
                         'red' => $item->superavit->fonte != $credito->rubrica->fonte,
                     ])>
-                        <td class="center aligned">{{ $item->id }}</td>
+                        {{-- <td class="center aligned">{{ $item->id }}</td> --}}
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->superavit->fonte ?? null) }}
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::money($item->valor) }}</td>
                         </td>
@@ -150,7 +151,8 @@
                     </tr>
                     @if (!is_null($item->justificativa))
                         <tr class="red">
-                            <td colspan="4">
+                            {{-- <td colspan="4"> --}}
+                            <td colspan="3">
                                 <div class="ui label">
                                     <i class="info circle icon"></i>
                                     Justificativa:
@@ -167,7 +169,8 @@
             </tbody>
             <tfoot>
                 <tr class="ui header">
-                    <th class="right aligned" colspan="2">Total</th>
+                    {{-- <th class="right aligned" colspan="2">Total</th> --}}
+                    <th class="right aligned">Total</th>
                     <th class="right aligned">
                         {{ \App\Support\Helpers\Fmt::money($decreto->vinculos->whereNotNull('superavit_id')->where('credito_id', $credito->id)->sum('valor')) }}
                     </th>
@@ -184,7 +187,7 @@
             <caption class="ui dividing header">Superávits em outras fontes a vincular</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Fonte</th>
                     <th class="right aligned">Valor disponível</th>
                     <th class="center aligned">Vincular</th>
@@ -192,8 +195,11 @@
             </thead>
             <tbody>
                 @forelse ($superavits_outros as $item)
+                    @if ($item->valor === $item->utilizado)
+                        @continue
+                    @endif
                     <tr>
-                        <td class="center aligned">{{ $item->id }}</td>
+                        {{-- <td class="center aligned">{{ $item->id }}</td> --}}
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($item->fonte ?? null) }}
                         </td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::money($item->valor - $item->utilizado) }}
@@ -224,7 +230,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">Nenhum superávit em outras fontes com saldo para vincular.</td>
+                        {{-- <td colspan="5">Nenhum superávit em outras fontes com saldo para vincular.</td> --}}
+                        <td colspan="4">Nenhum superávit em outras fontes com saldo para vincular.</td>
                     </tr>
                 @endforelse
             </tbody>

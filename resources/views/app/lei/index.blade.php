@@ -23,7 +23,8 @@
         <caption class="ui header">Leis cadastradas</caption>
         <thead>
             <tr>
-                <th colspan="6">
+                {{-- <th colspan="6"> --}}
+                <th colspan="5">
                     <a href="#nr" class="ui primary button">
                         <i class="plus icon"></i>
                         Novo
@@ -31,7 +32,7 @@
                 </th>
             </tr>
             <tr>
-                <th class="center aligned">#</th>
+                {{-- <th class="center aligned">#</th> --}}
                 <th class="right aligned">Nº</th>
                 <th class="center aligned">Data</th>
                 <th class="center aligned">Exercício</th>
@@ -42,7 +43,7 @@
         <tbody>
             @forelse ($leis as $lei)
                 <tr>
-                    <td class="center aligned">{{ $lei->id }}</td>
+                    {{-- <td class="center aligned">{{ $lei->id }}</td> --}}
                     <td class="right aligned">{{ \App\Support\Helpers\Fmt::docnumber($lei->nr) }}</td>
                     <td class="center aligned">{{ \App\Support\Helpers\Fmt::date($lei->data) }}</td>
                     <td class="center aligned">{{ $lei->exercicio }}</td>
@@ -57,7 +58,8 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6">Nenhuma lei cadastrada.</td>
+                    {{-- <td colspan="6">Nenhuma lei cadastrada.</td> --}}
+                    <td colspan="5">Nenhuma lei cadastrada.</td>
                 </tr>
             @endforelse
         </tbody>

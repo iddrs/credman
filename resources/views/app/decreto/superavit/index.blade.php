@@ -29,7 +29,8 @@
             <caption class="ui dividing header">Superávits financeiros lançados</caption>
             <thead>
                 <tr>
-                    <th colspan="4">
+                    {{-- <th colspan="4"> --}}
+                    <th colspan="3">
                         <a href="#valor" class="ui primary button">
                             <i class="plus icon"></i>
                             Novo
@@ -37,7 +38,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Fonte</th>
                     <th class="right aligned">Valor</th>
                     <th class="center aligned">Ações</th>
@@ -46,7 +47,7 @@
             <tbody>
                 @forelse ($decreto->superavits as $superavit)
                     <tr>
-                        <td class="center aligned">{{ $superavit->id }}</td>
+                        {{-- <td class="center aligned">{{ $superavit->id }}</td> --}}
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::fonte($superavit->fonte) }}
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::money($superavit->valor) }}</td>
                         </td>
@@ -59,23 +60,27 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">Nenhum superávit financeiro lançado.</td>
+                        {{-- <td colspan="5">Nenhum superávit financeiro lançado.</td> --}}
+                        <td colspan="4">Nenhum superávit financeiro lançado.</td>
                     </tr>
                 @endforelse
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="2" class="right aligned">Total lançado</th>
+                    {{-- <th colspan="2" class="right aligned">Total lançado</th> --}}
+                    <th class="right aligned">Total lançado</th>
                     <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->superavits->sum('valor'))}}</th>
                     <th></th>
                 </tr>
                 <tr>
-                    <th colspan="2" class="right aligned">Total do decreto</th>
+                    {{-- <th colspan="2" class="right aligned">Total do decreto</th> --}}
+                    <th class="right aligned">Total do decreto</th>
                     <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_superavit)}}</th>
                     <th></th>
                 </tr>
                 <tr class="ui header">
-                    <th colspan="2" class="right aligned">Total a lançar</th>
+                    {{-- <th colspan="2" class="right aligned">Total a lançar</th> --}}
+                    <th class="right aligned">Total a lançar</th>
                     <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_superavit - $decreto->superavits->sum('valor'))}}</th>
                     <th></th>
                 </tr>

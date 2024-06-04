@@ -48,7 +48,8 @@
                 </tr>
                 <tr @class([
                     'red',
-                    'green' => round($credito->valor == $credito->vinculos->sum('valor'), 2) !== 0.0,
+                    'green' =>
+                        round($credito->valor == $credito->vinculos->sum('valor'), 2) !== 0.0,
                 ])>
                     <td>Saldo para vincular</td>
                     <td class="right aligned">
@@ -66,7 +67,7 @@
             <caption class="ui dividing header">Reduções na mesma fonte a vincular</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Acesso</th>
                     <th class="right aligned">Unid. Orç.</th>
                     <th class="right aligned">Proj./Ativ.</th>
@@ -83,7 +84,7 @@
                         @continue
                     @endif
                     <tr>
-                        <td class="center aligned">{{ $item->id }}</td>
+                        {{-- <td class="center aligned">{{ $item->id }}</td> --}}
                         <td class="right aligned">{{ $item->acesso }}</td>
                         <td class="right aligned">
                             {{ \App\Support\Helpers\Fmt::uniorcam($item->uniorcam ?? null) }}</td>
@@ -122,7 +123,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="11">Nenhuma redução na mesma fonte com saldo para vincular.</td>
+                        {{-- <td colspan="11">Nenhuma redução na mesma fonte com saldo para vincular.</td> --}}
+                        <td colspan="10">Nenhuma redução na mesma fonte com saldo para vincular.</td>
                     </tr>
                 @endforelse
             </tbody>
@@ -136,7 +138,7 @@
             <caption class="ui dividing header">Reduções vinculadas</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Acesso</th>
                     <th class="right aligned">Unid. Orç.</th>
                     <th class="right aligned">Proj./Ativ.</th>
@@ -153,7 +155,7 @@
                         '',
                         'red' => $item->reducao->rubrica->fonte != $credito->rubrica->fonte,
                     ])>
-                        <td class="center aligned">{{ $item->id }}</td>
+                        {{-- <td class="center aligned">{{ $item->id }}</td> --}}
                         <td class="right aligned">{{ $item->reducao->rubrica->acesso }}</td>
                         <td class="right aligned">
                             {{ \App\Support\Helpers\Fmt::uniorcam($item->reducao->rubrica->uniorcam ?? null) }}</td>
@@ -175,13 +177,14 @@
                     </tr>
                     @if (!is_null($item->justificativa))
                         <tr class="red">
-                            <td colspan="9">
+                            {{-- <td colspan="9"> --}}
+                            <td colspan="8">
                                 <p>
-                                    <div class="ui label">
-                                        <i class="info circle icon"></i>
-                                        Aviso:
-                                    </div>
-                                    {{ $item->aviso }}
+                                <div class="ui label">
+                                    <i class="info circle icon"></i>
+                                    Aviso:
+                                </div>
+                                {{ $item->aviso }}
                                 </p>
                                 <p>Justificativa: {{ $item->justificativa }}</p>
                             </td>
@@ -189,13 +192,15 @@
                     @endif
                 @empty
                     <tr>
-                        <td colspan="11">Nenhuma redução vinculada.</td>
+                        {{-- <td colspan="11">Nenhuma redução vinculada.</td> --}}
+                        <td colspan="10">Nenhuma redução vinculada.</td>
                     </tr>
                 @endforelse
             </tbody>
             <tfoot>
                 <tr class="ui header">
-                    <th class="right aligned" colspan="5">Total</th>
+                    {{-- <th class="right aligned" colspan="5">Total</th> --}}
+                    <th class="right aligned" colspan="4">Total</th>
                     <th class="right aligned">
                         {{ \App\Support\Helpers\Fmt::money($decreto->vinculos->whereNotNull('reducao_id')->where('credito_id', $credito->id)->sum('valor')) }}
                     </th>
@@ -212,7 +217,7 @@
             <caption class="ui dividing header">Reduções em outras fontes a vincular</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Acesso</th>
                     <th class="right aligned">Unid. Orç.</th>
                     <th class="right aligned">Proj./Ativ.</th>
@@ -225,8 +230,11 @@
             </thead>
             <tbody>
                 @forelse ($reducoes_outras as $item)
+                    @if ($item->valor === $item->utilizado)
+                        @continue
+                    @endif
                     <tr>
-                        <td class="center aligned">{{ $item->id }}</td>
+                        {{-- <td class="center aligned">{{ $item->id }}</td> --}}
                         <td class="right aligned">{{ $item->acesso }}</td>
                         <td class="right aligned">
                             {{ \App\Support\Helpers\Fmt::uniorcam($item->uniorcam ?? null) }}</td>
@@ -265,7 +273,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="11">Nenhuma redução em outras fontes com saldo para vincular.</td>
+                        {{-- <td colspan="11">Nenhuma redução em outras fontes com saldo para vincular.</td> --}}
+                        <td colspan="10">Nenhuma redução em outras fontes com saldo para vincular.</td>
                     </tr>
                 @endforelse
             </tbody>

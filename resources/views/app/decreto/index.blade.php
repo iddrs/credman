@@ -33,7 +33,7 @@
             <caption class="ui header">Decretos cadastrados para o exercício de {{ $exercicio }}</caption>
             <thead>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Nº</th>
                     <th class="center aligned">Data</th>
                     <th class="center aligned">Lei nº</th>
@@ -45,7 +45,7 @@
                 @forelse ($decretos as $decreto)
                     <tr>
 
-                        <td class="center aligned">{{ $decreto->id }}</td>
+                        {{-- <td class="center aligned">{{ $decreto->id }}</td> --}}
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}</td>
                         <td class="center aligned">{{ \App\Support\Helpers\Fmt::date($decreto->data) }}</td>
                         <td class="center aligned">{{ \App\Support\Helpers\Fmt::docnumber($decreto->lei) }}</td>
@@ -67,7 +67,8 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="6">Nenhum decreto cadastrado no exercício de {{ $exercicio }}.</td>
+                        {{-- <td colspan="6">Nenhum decreto cadastrado no exercício de {{ $exercicio }}.</td> --}}
+                        <td colspan="5">Nenhum decreto cadastrado no exercício de {{ $exercicio }}.</td>
                     </tr>
                 @endforelse
             </tbody>

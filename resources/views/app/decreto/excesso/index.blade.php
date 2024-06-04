@@ -29,7 +29,8 @@
             <caption class="ui dividing header">Excessos de arrecadação lançados</caption>
             <thead>
                 <tr>
-                    <th colspan="5">
+                    {{-- <th colspan="5"> --}}
+                    <th colspan="4">
                         <a href="#receita" class="ui primary button">
                             <i class="plus icon"></i>
                             Novo
@@ -37,7 +38,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="left aligned">Receita</th>
                     <th class="right aligned">Fonte</th>
                     <th class="right aligned">Valor</th>
@@ -47,7 +48,7 @@
             <tbody>
                 @forelse ($decreto->excessos as $excesso)
                     <tr>
-                        <td class="center aligned">{{ $excesso->id }}</td>
+                        {{-- <td class="center aligned">{{ $excesso->id }}</td> --}}
                         <td class="left aligned">
                             {{ \App\Support\Helpers\Fmt::receita($excesso->receita) }}
                         </td>
@@ -63,23 +64,27 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5">Nenhum excesso de arrecadação lançado.</td>
+                        {{-- <td colspan="5">Nenhum excesso de arrecadação lançado.</td> --}}
+                        <td colspan="4">Nenhum excesso de arrecadação lançado.</td>
                     </tr>
                 @endforelse
             </tbody>
             <tfoot>
                 <tr>
-                    <th colspan="3" class="right aligned">Total lançado</th>
+                    {{-- <th colspan="3" class="right aligned">Total lançado</th> --}}
+                    <th colspan="2" class="right aligned">Total lançado</th>
                     <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->excessos->sum('valor'))}}</th>
                     <th></th>
                 </tr>
                 <tr>
-                    <th colspan="3" class="right aligned">Total do decreto</th>
+                    {{-- <th colspan="3" class="right aligned">Total do decreto</th> --}}
+                    <th colspan="2" class="right aligned">Total do decreto</th>
                     <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso)}}</th>
                     <th></th>
                 </tr>
                 <tr class="ui header">
-                    <th colspan="3" class="right aligned">Total</th>
+                    {{-- <th colspan="3" class="right aligned">Total</th> --}}
+                    <th colspan="2" class="right aligned">Total</th>
                     <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso - $decreto->excessos->sum('valor'))}}</th>
                     <th></th>
                 </tr>

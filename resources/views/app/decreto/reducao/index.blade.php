@@ -29,7 +29,8 @@
             <caption class="ui dividing header">Reduções lançadas</caption>
             <thead>
                 <tr>
-                    <th colspan="11">
+                    {{-- <th colspan="11"> --}}
+                    <th colspan="10">
                         <a href="#acesso" class="ui primary button">
                             <i class="plus icon"></i>
                             Nova
@@ -41,7 +42,7 @@
                     </th>
                 </tr>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Acesso</th>
                     <th class="right aligned">Unid. Orç.</th>
                     <th class="right aligned">Proj./Ativ.</th>
@@ -55,7 +56,7 @@
             <tbody>
                 @forelse ($decreto->reducoes as $reducao)
                     <tr @class(['', 'error' => $reducao->rubrica_id == 0])>
-                        <td class="center aligned">{{ $reducao->id }}</td>
+                        {{-- <td class="center aligned">{{ $reducao->id }}</td> --}}
                         <td class="right aligned">{{ $reducao->acesso }}</td>
                         <td class="right aligned">
                             {{ \App\Support\Helpers\Fmt::uniorcam($reducao->rubrica->uniorcam ?? null) }}</td>
@@ -76,23 +77,27 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="11">Nenhuma redução lançada.</td>
+                        {{-- <td colspan="11">Nenhuma redução lançada.</td> --}}
+                        <td colspan="10">Nenhuma redução lançada.</td>
                     </tr>
                 @endforelse
             </tbody>
             <tfoot>
                 <tr>
-                    <th class="right aligned" colspan="5">Total lançado</th>
+                    {{-- <th class="right aligned" colspan="5">Total lançado</th> --}}
+                    <th class="right aligned" colspan="4">Total lançado</th>
                     <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->reducoes->sum('valor')) }}</th>
                     <th colspan="3"></th>
                 </tr>
                 <tr>
-                    <th class="right aligned" colspan="5">Total do decreto</th>
+                    {{-- <th class="right aligned" colspan="5">Total do decreto</th> --}}
+                    <th class="right aligned" colspan="4">Total do decreto</th>
                     <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_reducao) }}</th>
                     <th colspan="3"></th>
                 </tr>
                 <tr class="ui header">
-                    <th class="right aligned" colspan="5">Total a lançar</th>
+                    {{-- <th class="right aligned" colspan="5">Total a lançar</th> --}}
+                    <th class="right aligned" colspan="4">Total a lançar</th>
                     <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_reducao - $decreto->reducoes->sum('valor')) }}</th>
                     <th colspan="3"></th>
                 </tr>

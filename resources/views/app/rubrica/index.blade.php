@@ -31,7 +31,8 @@
         <caption class="ui header">Rubricas cadastradas em {{ $exercicio }}</caption>
         <thead>
             <tr>
-                <th colspan="8">
+                {{-- <th colspan="8"> --}}
+                <th colspan="7">
                     <a href="#acesso" class="ui primary button">
                         <i class="plus icon"></i>
                         Novo
@@ -39,7 +40,7 @@
                 </th>
             </tr>
             <tr>
-                <th class="center aligned">#</th>
+                {{-- <th class="center aligned">#</th> --}}
                 <th class="right aligned">Acesso</th>
                 <th class="center aligned">Unid. Orç.</th>
                 <th class="center aligned">Proj./Ativ.</th>
@@ -52,7 +53,7 @@
         <tbody>
             @forelse ($rubricas as $rubrica)
                 <tr>
-                    <td class="center aligned">{{ $rubrica->id }}</td>
+                    {{-- <td class="center aligned">{{ $rubrica->id }}</td> --}}
                     <td class="right aligned">{{ $rubrica->acesso }}</td>
                     <td class="center aligned">{{ \App\Support\Helpers\Fmt::uniorcam($rubrica->uniorcam) }}</td>
                     <td class="center aligned">{{ \App\Support\Helpers\Fmt::projativ($rubrica->projativ) }}</td>
@@ -72,7 +73,8 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8">Nenhuma rubrica cadastrada no ano de {{ $exercicio }}.</td>
+                    {{-- <td colspan="8">Nenhuma rubrica cadastrada no ano de {{ $exercicio }}.</td> --}}
+                    <td colspan="7">Nenhuma rubrica cadastrada no ano de {{ $exercicio }}.</td>
                 </tr>
             @endforelse
         </tbody>

@@ -29,7 +29,8 @@
             <caption class="ui dividing header">Créditos lançados</caption>
             <thead>
                 <tr>
-                    <th colspan="11">
+                    {{-- <th colspan="11"> --}}
+                    <th colspan="10">
                         <a href="#acesso" class="ui primary button">
                             <i class="plus icon"></i>
                             Novo
@@ -54,7 +55,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="center aligned">#</th>
+                    {{-- <th class="center aligned">#</th> --}}
                     <th class="right aligned">Acesso</th>
                     <th class="right aligned">Unid. Orç.</th>
                     <th class="right aligned">Proj./Ativ.</th>
@@ -70,7 +71,7 @@
             <tbody>
                 @forelse ($decreto->creditos as $credito)
                     <tr @class(['', 'error' => $credito->rubrica_id == 0])>
-                        <td class="center aligned">{{ $credito->id }}</td>
+                        {{-- <td class="center aligned">{{ $credito->id }}</td> --}}
                         <td class="right aligned">{{ $credito->acesso }}</td>
                         <td class="right aligned">
                             {{ \App\Support\Helpers\Fmt::uniorcam($credito->rubrica->uniorcam ?? null) }}
@@ -166,27 +167,31 @@
                     </tr>
                     @empty
                         <tr>
-                            <td colspan="11">Nenhum crédito lançado.</td>
+                            {{-- <td colspan="11">Nenhum crédito lançado.</td> --}}
+                            <td colspan="10">Nenhum crédito lançado.</td>
                         </tr>
                     @endforelse
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="5" class="right aligned">
+                        {{-- <th colspan="5" class="right aligned"> --}}
+                        <th colspan="4" class="right aligned">
                             Total lançado
                         </th>
                         <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->creditos->sum('valor')) }}</th>
                         <th colspan="5"></th>
                     </tr>
                     <tr>
-                        <th colspan="5" class="right aligned">
+                        {{-- <th colspan="5" class="right aligned"> --}}
+                        <th colspan="4" class="right aligned">
                             Total do decreto
                         </th>
                         <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_credito) }}</th>
                         <th colspan="5"></th>
                     </tr>
                     <tr class="ui header">
-                        <th colspan="5" class="right aligned">
+                        {{-- <th colspan="5" class="right aligned"> --}}
+                        <th colspan="4" class="right aligned">
                             Saldo a lançar
                         </th>
                         <th class="right aligned">{{ \App\Support\Helpers\Fmt::money($decreto->vl_credito - $decreto->creditos->sum('valor')) }}</th>
