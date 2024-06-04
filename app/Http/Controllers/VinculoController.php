@@ -40,6 +40,7 @@ class VinculoController extends Controller
         AND rubricas.fonte = %d
     GROUP BY
         reducoes.id, reducoes.valor, rubricas.acesso, rubricas.uniorcam, rubricas.projativ, rubricas.despesa, rubricas.fonte, rubricas.complemento
+    ORDER BY rubricas.acesso ASC
     ', $decreto_id, $credito->rubrica->fonte));
         $reducoes_outras = DB::select(sprintf('SELECT
         reducoes.id,
@@ -62,6 +63,7 @@ class VinculoController extends Controller
         AND rubricas.fonte != %d
     GROUP BY
         reducoes.id, reducoes.valor, rubricas.acesso, rubricas.uniorcam, rubricas.projativ, rubricas.despesa, rubricas.fonte, rubricas.complemento
+    ORDER BY rubricas.acesso ASC
     ', $decreto_id, $credito->rubrica->fonte));
         return view('app.decreto.reducao.vincular', compact('decreto', 'credito', 'reducoes_fonte', 'reducoes_outras'));
     }
