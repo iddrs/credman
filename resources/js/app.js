@@ -78,11 +78,11 @@ function filterOrigemDoCredito() {
 
         switch (tipo.value) {
             case '1'://suplementar
-                console.log('suplementar');
-                origem.appendChild(getOptionReducao());
-                origem.appendChild(getOptionSuperavit());
-                origem.appendChild(getOptionExcesso());
-                break;
+            console.log('suplementar');
+            origem.appendChild(getOptionReducao());
+            origem.appendChild(getOptionSuperavit());
+            origem.appendChild(getOptionExcesso());
+            break;
             case '2'://especial
                 console.log('especial');
                 origem.appendChild(getOptionReducao());
@@ -90,7 +90,7 @@ function filterOrigemDoCredito() {
                 origem.appendChild(getOptionExcesso());
                 origem.appendChild(getOptionReabertura());
                 break;
-            case '3'://extraordinário
+                case '3'://extraordinário
                 console.log('extraordinário');
                 origem.appendChild(getOptionReducao());
                 origem.appendChild(getOptionSuperavit());
