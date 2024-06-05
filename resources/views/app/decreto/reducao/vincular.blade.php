@@ -59,6 +59,14 @@
 
         </table>
 
+        <menu class="ui menu">
+            <div class="right item">
+                <a class="ui labeled icon button" href="{{ route('decreto.creditos', ['decreto_id' => $decreto->id]) }}">
+                    <i class="left arrow icon"></i>
+                    Voltar
+                </a>
+            </div>
+        </menu>
     </div>
 
     <div class="ui green segment">
