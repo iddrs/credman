@@ -1,6 +1,6 @@
 <div class="required field">
     <label for="exercicio">Exercício</label>
-    <input type="number" name="exercicio" id="exercicio" required value="{{ $value }}" min="1" step="1" class="enter-as-tab" title="Apenas números maiores que zero." autocomplete="off">
+    <input type="number" name="exercicio" id="exercicio" required value="{{ $value }}" min="1" step="1" class="enter-as-tab" title="Apenas números maiores que zero." autocomplete="off" placeholder="2024">
     @error('exercicio')
         @include('app.partials.form.error-message', ['message' => $message])
     @enderror
