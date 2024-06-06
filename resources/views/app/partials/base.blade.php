@@ -24,7 +24,7 @@
 
     <main class="ui container"><!-- main content -->
 
-        <article class="ui segment">
+        <article class="ui basic segment">
 
             @if ($errors->any())
 
