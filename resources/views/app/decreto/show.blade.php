@@ -95,7 +95,7 @@
     @endif
     </div>
 
-    <div class="ui segment">
+    <div class="ui blue segment">
 
         <div class="ui grid">
             <div class="stretched row">
@@ -176,167 +176,167 @@
             </div>
 
         </div>
+    </div>
 
+    <div class="ui violet segment">
+        <h2 class="ui dividing header">Origem dos recursos</h2>
 
-        <div class="ui segment">
-            <h2 class="ui dividing header">Origem dos recursos</h2>
+        <div class="ui cards">
 
-            <div class="ui cards">
+            <div class="ui horizontal card">
+                <div class="content">
+                    <div class="header">Redução</div>
+                    <div class="description">
+                        <div class="ui statistic">
+                            <div class="value">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->vl_reducao) }}
+                            </div>
+                            <div class="label">Total do decreto</div>
+                        </div>
+                    </div>
 
-                <div class="ui horizontal card">
-                    <div class="content">
-                        <div class="header">Redução</div>
-                        <div class="description">
-                            <div class="ui statistic">
-                                <div class="value">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->vl_reducao) }}
-                                </div>
-                                <div class="label">Total do decreto</div>
+                </div>
+                <div class="extra content">
+                    <span class="left floated">
+                        <div class="ui label">
+                            lançado:
+                            <div class="detail">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->reducoes->sum('valor')) }}
                             </div>
                         </div>
-
-                    </div>
-                    <div class="extra content">
-                        <span class="left floated">
-                            <div class="ui label">
-                                lançado:
-                                <div class="detail">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->reducoes->sum('valor')) }}
-                                </div>
-                            </div>
-                        </span>
-                        <span class="right floated">
-                            <div @class([
-                                'ui label',
-                                'red' =>
-                                    round($decreto->vl_reducao - $decreto->reducoes->sum('valor'), 2) !=
-                                    0.0,
-                            ])>
-                                diferença:
-                                <div class="detail">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->vl_reducao - $decreto->reducoes->sum('valor')) }}
-                                </div>
-                            </div>
-                        </span>
-                    </div>
-                    @if (!$decreto->fechado)
-                        <a href="{{ route('decreto.reducoes', ['decreto_id' => $decreto->id]) }}" class="ui button">
-                            <i class="edit icon"></i> Gerenciar
-                        </a>
-                    @endif
-                </div>
-
-                <div class="ui horizontal card">
-                    <div class="content">
-                        <div class="header">Excesso de arrecadação</div>
-                        <div class="description">
-                            <div class="ui statistic">
-                                <div class="value">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso) }}
-                                </div>
-                                <div class="label">Total do decreto</div>
+                    </span>
+                    <span class="right floated">
+                        <div @class([
+                            'ui label',
+                            'red' =>
+                                round($decreto->vl_reducao - $decreto->reducoes->sum('valor'), 2) !=
+                                0.0,
+                        ])>
+                            diferença:
+                            <div class="detail">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->vl_reducao - $decreto->reducoes->sum('valor')) }}
                             </div>
                         </div>
-
-                    </div>
-                    <div class="extra content">
-                        <span class="left floated">
-                            <div class="ui label">
-                                lançado:
-                                <div class="detail">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->excessos->sum('valor')) }}
-                                </div>
-                            </div>
-                        </span>
-                        <span class="right floated">
-                            <div @class([
-                                'ui label',
-                                'red' =>
-                                    round($decreto->vl_excesso - $decreto->excessos->sum('valor'), 2) !=
-                                    0.0,
-                            ])>
-                                diferença:
-                                <div class="detail">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso - $decreto->excessos->sum('valor')) }}
-                                </div>
-                            </div>
-                        </span>
-                    </div>
-                    @if (!$decreto->fechado)
-                        <a href="{{ route('decreto.excessos', ['decreto_id' => $decreto->id]) }}" class="ui button">
-                            <i class="edit icon"></i> Gerenciar
-                        </a>
-                    @endif
+                    </span>
                 </div>
-
+                @if (!$decreto->fechado)
+                    <a href="{{ route('decreto.reducoes', ['decreto_id' => $decreto->id]) }}" class="ui button">
+                        <i class="edit icon"></i> Gerenciar
+                    </a>
+                @endif
             </div>
 
+            <div class="ui horizontal card">
+                <div class="content">
+                    <div class="header">Excesso de arrecadação</div>
+                    <div class="description">
+                        <div class="ui statistic">
+                            <div class="value">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso) }}
+                            </div>
+                            <div class="label">Total do decreto</div>
+                        </div>
+                    </div>
 
-            <div class="ui cards">
-
-                <div class="ui horizontal card">
-                    <div class="content">
-                        <div class="header">Superávit financeiro</div>
-                        <div class="description">
-                            <div class="ui statistic">
-                                <div class="value">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->vl_superavit) }}
-                                </div>
-                                <div class="label">Total do decreto</div>
+                </div>
+                <div class="extra content">
+                    <span class="left floated">
+                        <div class="ui label">
+                            lançado:
+                            <div class="detail">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->excessos->sum('valor')) }}
                             </div>
                         </div>
-
-                    </div>
-                    <div class="extra content">
-                        <span class="left floated">
-                            <div class="ui label">
-                                lançado:
-                                <div class="detail">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->superavits->sum('valor')) }}
-                                </div>
-                            </div>
-                        </span>
-                        <span class="right floated">
-                            <div @class([
-                                'ui label',
-                                'red' =>
-                                    round($decreto->vl_superavit - $decreto->superavits->sum('valor'), 2) !=
-                                    0.0,
-                            ])>
-                                diferença:
-                                <div class="detail">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->vl_superavit - $decreto->superavits->sum('valor')) }}
-                                </div>
-                            </div>
-                        </span>
-                    </div>
-                    @if (!$decreto->fechado)
-                        <a href="{{ route('decreto.superavits', ['decreto_id' => $decreto->id]) }}" class="ui button">
-                            <i class="edit icon"></i> Gerenciar
-                        </a>
-                    @endif
-                </div>
-
-                <div class="ui horizontal card">
-                    <div class="content">
-                        <div class="header">Reabertura</div>
-                        <div class="description">
-                            <div class="ui statistic">
-                                <div class="value">
-                                    {{ \App\Support\Helpers\Fmt::money($decreto->vl_reaberto) }}
-                                </div>
-                                <div class="label">Total do decreto</div>
+                    </span>
+                    <span class="right floated">
+                        <div @class([
+                            'ui label',
+                            'red' =>
+                                round($decreto->vl_excesso - $decreto->excessos->sum('valor'), 2) !=
+                                0.0,
+                        ])>
+                            diferença:
+                            <div class="detail">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->vl_excesso - $decreto->excessos->sum('valor')) }}
                             </div>
                         </div>
-
-                    </div>
+                    </span>
                 </div>
-
+                @if (!$decreto->fechado)
+                    <a href="{{ route('decreto.excessos', ['decreto_id' => $decreto->id]) }}" class="ui button">
+                        <i class="edit icon"></i> Gerenciar
+                    </a>
+                @endif
             </div>
 
         </div>
 
 
+        <div class="ui cards">
+
+            <div class="ui horizontal card">
+                <div class="content">
+                    <div class="header">Superávit financeiro</div>
+                    <div class="description">
+                        <div class="ui statistic">
+                            <div class="value">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->vl_superavit) }}
+                            </div>
+                            <div class="label">Total do decreto</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="extra content">
+                    <span class="left floated">
+                        <div class="ui label">
+                            lançado:
+                            <div class="detail">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->superavits->sum('valor')) }}
+                            </div>
+                        </div>
+                    </span>
+                    <span class="right floated">
+                        <div @class([
+                            'ui label',
+                            'red' =>
+                                round($decreto->vl_superavit - $decreto->superavits->sum('valor'), 2) !=
+                                0.0,
+                        ])>
+                            diferença:
+                            <div class="detail">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->vl_superavit - $decreto->superavits->sum('valor')) }}
+                            </div>
+                        </div>
+                    </span>
+                </div>
+                @if (!$decreto->fechado)
+                    <a href="{{ route('decreto.superavits', ['decreto_id' => $decreto->id]) }}" class="ui button">
+                        <i class="edit icon"></i> Gerenciar
+                    </a>
+                @endif
+            </div>
+
+            <div class="ui horizontal card">
+                <div class="content">
+                    <div class="header">Reabertura</div>
+                    <div class="description">
+                        <div class="ui statistic">
+                            <div class="value">
+                                {{ \App\Support\Helpers\Fmt::money($decreto->vl_reaberto) }}
+                            </div>
+                            <div class="label">Total do decreto</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 
-    @endsection
+
+
+@endsection
