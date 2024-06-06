@@ -14,7 +14,7 @@
     </div>
 
     <div class="ui buttons">
-        <button type="submit" class="ui positive button enter-as-tab">
+        <button type="submit" class="ui positive button enter-as-tab" >
             <i class="save icon"></i>
             Salvar
         </button>

@@ -16,6 +16,7 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "hotkeys-js": "^3.13.7",
         "jquery": "^3.7.1"
     }
 }

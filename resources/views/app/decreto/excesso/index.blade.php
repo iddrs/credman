@@ -31,7 +31,7 @@
                 <tr>
                     {{-- <th colspan="5"> --}}
                     <th colspan="4">
-                        <a href="#receita" class="ui primary button">
+                        <a href="#receita" class="ui primary button" accesskey="F8">
                             <i class="plus icon"></i>
                             Novo
                         </a>
