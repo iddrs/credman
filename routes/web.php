@@ -4,13 +4,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\DecretoIsClosed;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
-    return view('app.index');
+    return redirect()->route('dashboard');
 })->name('home');
 
-Route::get('/dashboard', function () {
-    return view('app.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard/{exercicio?}', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
 
 //rubricas
 Route::middleware('auth')->group(function () {
@@ -80,7 +80,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/decreto/{decreto_id}/credito/{credito_id}/vincular/superavit', [\App\Http\Controllers\VinculoController::class, 'superavit'])->name('decreto.credito.vincular.superavit')->middleware(DecretoIsClosed::class);
     Route::post('/decreto/{decreto_id}/credito/{credito_id}/vincular/superavit/{superavit_id}/store', [\App\Http\Controllers\VinculoController::class, 'storeSuperavit'])->name('decreto.credito.vincular.superavit.store')->middleware(DecretoIsClosed::class);
     Route::post('/decreto/{decreto_id}/credito/{credito_id}/vincular/superavit/{superavit_id}/confirm', [\App\Http\Controllers\VinculoController::class, 'confirmSuperavit'])->name('decreto.credito.vincular.superavit.confirm')->middleware(DecretoIsClosed::class);
-
 });
 
 //reduções
@@ -116,4 +115,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

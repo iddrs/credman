@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Lei extends Model
 {
@@ -28,5 +29,10 @@ class Lei extends Model
     public function decretos(): HasMany
     {
         return $this->hasMany(Decreto::class);
+    }
+
+    public function creditos(): HasManyThrough
+    {
+        return $this->hasManyThrough(Credito::class, Decreto::class);
     }
 }

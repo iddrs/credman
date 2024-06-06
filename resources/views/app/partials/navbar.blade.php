@@ -2,7 +2,7 @@
     <div class="header item">
         {{ config('app.name') }}
     </div>
-    <a class="item" href="#">
+    <a class="item" href="{{ route('dashboard') }}">
         Dashboard
     </a>
     <a class="item" href="{{ route('rubricas') }}">
