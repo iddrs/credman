@@ -8,7 +8,7 @@
 
     <title>@yield('title') | {{ config('app.name') }}</title>
 
-    @vite(['resources/js/app.js', 'resources/css/charts.min.css', 'resources/fomantic/semantic.min.css', 'resources/fomantic/semantic.min.js'])
+    @vite(['resources/js/app.js', 'resources/fomantic/semantic.min.css', 'resources/fomantic/semantic.min.js'])
 
 </head>
 
