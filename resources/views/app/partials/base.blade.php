@@ -51,6 +51,15 @@
         </article>
     </main><!-- main content -->
 
+    <footer class="ui basic mini menu" style="position: absolute; bottom: 0;">
+        <div class="item">Copyright © 2024 - <a href="https://everton3x.github.io">Everton da Rosa</a></div>
+        <div class="right item">
+            <a href="https://github.com/iddrs/credman">
+                <i class="github icon"></i>
+            </a>
+        </div>
+    </footer>
+
 </body>
 
 </html>
