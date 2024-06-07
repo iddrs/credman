@@ -14,8 +14,8 @@
     </div>
 
     <div class="ui buttons">
-        <button type="submit" class="ui positive button enter-as-tab" >
-            <i class="save icon"></i>
+        <button type="submit" class="ui positive button enter-as-tab" accesskey="ctrl+s">
+            {{-- <i class="save icon"></i> --}}
             Salvar
         </button>
         @isset($cancel)

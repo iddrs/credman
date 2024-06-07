@@ -2,16 +2,16 @@
     <div class="header item">
         {{ config('app.name') }}
     </div>
-    <a class="item" href="{{ route('dashboard') }}" accesskey="F1">
+    <a class="item" href="{{ route('dashboard') }}" accesskey="ctrl+1">
         Dashboard
     </a>
-    <a class="item" href="{{ route('rubricas') }}" accesskey="F2">
+    <a class="item" href="{{ route('rubricas') }}" accesskey="ctrl+2">
         Rubricas
     </a>
-    <a class="item" href="{{ route('leis') }}" accesskey="F3">
+    <a class="item" href="{{ route('leis') }}" accesskey="ctrl+3">
         Leis
     </a>
-    <a class="item" href="{{ route('decretos') }}" accesskey="F4">
+    <a class="item" href="{{ route('decretos') }}" accesskey="ctrl+4">
         Decretos
     </a>
     <div class="right menu">

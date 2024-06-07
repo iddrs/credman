@@ -52,12 +52,12 @@
         </div>
 
         <div class="ui buttons">
-            <a class="ui labeled icon primary button" href="{{ route('lei.edit', ['id' => $lei->id]) }}">
-                <i class="edit icon"></i>
+            <a class="ui primary button" href="{{ route('lei.edit', ['id' => $lei->id]) }}">
+                {{-- <i class="edit icon"></i> --}}
                 Editar
             </a>
-            <a class="ui labeled icon negative button" href="{{ route('lei.delete', ['id' => $lei->id]) }}">
-                <i class="trash icon"></i>
+            <a class="ui negative button" href="{{ route('lei.delete', ['id' => $lei->id]) }}">
+                {{-- <i class="trash icon"></i> --}}
                 Excluir
             </a>
         </div>
@@ -73,9 +73,9 @@
             <thead>
                 <tr>
                     <th colspan="5">
-                        <a class="ui labeled icon primary button" href="#nr">
-                            <i class="plus icon"></i>
-                            Novo decreto
+                        <a class="ui primary button" href="#nr">
+                            {{-- <i class="plus icon"></i> --}}
+                            Novo
                         </a>
                     </th>
                 </tr>

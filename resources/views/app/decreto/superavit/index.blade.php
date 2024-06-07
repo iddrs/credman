@@ -31,8 +31,7 @@
                 <tr>
                     {{-- <th colspan="4"> --}}
                     <th colspan="3">
-                        <a href="#valor" class="ui primary button" accesskey="F8">
-                            <i class="plus icon"></i>
+                        <a href="#valor" class="ui primary button" accesskey="ctrl+a">
                             Novo
                         </a>
                     </th>

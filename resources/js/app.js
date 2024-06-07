@@ -111,7 +111,15 @@ $('form').on('submit', function (e) {
     $(this).find('button[type="submit"]').prop('disabled', true);
 })
 
+// Hotkeys
 import hotkeys from 'hotkeys-js';
+
+// Necessário para habilitar hotkeys em campos de formulário.
+hotkeys.filter = function(event) {
+    var target = event.target || event.srcElement;
+    var tagName = target,tagName;
+    return !(target.isContentEditable || tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT');
+};//end filter
 
 $("[accesskey]").each(function () {
     let label = document.createElement('kbd');
@@ -134,3 +142,4 @@ $("[accesskey]").each(function () {
         });
     }
 });
+// end Hotkeys

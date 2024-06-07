@@ -89,7 +89,7 @@
                         @endforelse
                         <tr>
                             <td class="right aligned" colspan="5">
-                                <a class="ui primary basic button" href="{{ route('leis') }}">Ver todas</a>
+                                <a class="ui primary basic button" href="{{ route('leis') }}" accesskey="ctrl+L">Ver todas</a>
                             </td>
                         </tr>
                     </tbody>
@@ -142,7 +142,7 @@
                         @endforelse
                         <tr>
                             <td class="right aligned" colspan="5">
-                                <a class="ui primary basic button" href="{{ route('decretos') }}">Ver todos</a>
+                                <a class="ui primary basic button" href="{{ route('decretos') }}" accesskey="ctrl+D">Ver todos</a>
                             </td>
                         </tr>
                     </tbody>

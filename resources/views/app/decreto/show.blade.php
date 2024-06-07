@@ -68,26 +68,22 @@
         @if (!$decreto->fechado)
             <div class="item">
                 <div class="ui buttons">
-                    <a class="ui labeled icon green button"
+                    <a class="ui green button"
                         href="{{ route('decreto.creditos', ['decreto_id' => $decreto->id]) }}">
-                        <i class="linkify icon"></i>
                         Vincular
                     </a>
-                    <a class="ui labeled icon primary button" href="{{ route('decreto.verify', ['id' => $decreto->id]) }}">
-                        <i class="check circle outline icon"></i>
+                    <a class="ui primary button" href="{{ route('decreto.verify', ['id' => $decreto->id]) }}">
                         Verificar
                     </a>
                 @else
                     <div class="right item">
                         <div class="ui buttons">
-                            <a class="ui labeled icon green button"
+                            <a class="ui green button"
                                 href="{{ route('decreto.docx', ['id' => $decreto->id]) }}">
-                                <i class="file word outline icon"></i>
                                 Gerar MS Word
                             </a>
-                            <a class="ui labeled icon teal button"
+                            <a class="ui teal button"
                                 href="{{ route('decreto.open', ['id' => $decreto->id]) }}">
-                                <i class="door open icon"></i>
                                 Reabrir
                             </a>
         @endif
@@ -97,12 +93,10 @@
     @if (!$decreto->fechado)
         <div class="right item">
             <div class="ui buttons">
-                <a class="ui labeled icon primary button" href="{{ route('decreto.edit', ['id' => $decreto->id]) }}">
-                    <i class="edit icon"></i>
+                <a class="ui primary button" href="{{ route('decreto.edit', ['id' => $decreto->id]) }}">
                     Editar
                 </a>
-                <a class="ui labeled icon negative button" href="{{ route('decreto.delete', ['id' => $decreto->id]) }}">
-                    <i class="trash icon"></i>
+                <a class="ui negative button" href="{{ route('decreto.delete', ['id' => $decreto->id]) }}">
                     Excluir
                 </a>
             </div>

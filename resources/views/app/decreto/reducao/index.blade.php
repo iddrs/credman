@@ -31,12 +31,10 @@
                 <tr>
                     {{-- <th colspan="11"> --}}
                     <th colspan="10">
-                        <a href="#acesso" class="ui primary button" accesskey="F8">
-                            <i class="plus icon"></i>
+                        <a href="#acesso" class="ui primary button" accesskey="ctrl+a">
                             Nova
                         </a>
                         <a href="{{ route('decreto.reducoes.rubricas.update', ['decreto_id' => $decreto->id]) }}" class="ui button">
-                            <i class="search icon"></i>
                             Atualizar rubricas
                         </a>
                     </th>
