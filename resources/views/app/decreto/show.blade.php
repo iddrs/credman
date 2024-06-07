@@ -19,8 +19,23 @@
 
 @section('content')
 
+    @php
+        switch ($decreto->tipo_decreto) {
+            case 'D':
+                $tipo_decreto = 'Decreto';
+                break;
+            case 'M':
+                $tipo_decreto = 'Resolução de Mesa';
+                break;
+
+            default:
+                $tipo_decreto = 'Indefinido';
+                break;
+        }
+    @endphp
+
     @include('app.partials.header', [
-        'title' => 'Decreto nº ' . \App\Support\Helpers\Fmt::docnumber($decreto->nr),
+        'title' => $tipo_decreto . ' nº ' . \App\Support\Helpers\Fmt::docnumber($decreto->nr),
     ])
     <div class="ui segment">
 

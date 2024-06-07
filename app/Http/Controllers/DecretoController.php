@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Decreto;
 use App\Support\Helpers\Fmt;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use PhpOffice\PhpWord\TemplateProcessor;
 
 class DecretoController extends Controller
 {
     protected array $rules = [
         'lei_id' => ['required', 'integer', 'min:1'],
+        'tipo_decreto' => ['required', 'in:D,M',],
         'nr' => ['required', 'integer',],
         'data' => ['required', 'date', 'date_format:Y-m-d'],
         'vl_credito' => ['required', 'decimal:0,2', 'min:0'],
@@ -23,7 +26,9 @@ class DecretoController extends Controller
     ];
 
     protected array $messages = [
-        'nr.unique' => 'Já existe este decreto nesta data.',
+        'nr.unique' => 'Já existe decreto com este tipo neste número e nesta data.',
+        'tipo_decreto.required' => 'Campo obrigatório.',
+        'tipo_decreto.in' => 'Valor inválido.',
         'nr.required' => 'Campo obrigatório.',
         'nr.integer' => 'Apenas números são aceitos.',
         'data.required' => 'Campo obrigatório.',
@@ -63,7 +68,8 @@ class DecretoController extends Controller
     public function store(Request $request)
     {
         $rules = $this->rules;
-        $rules['nr'][] = 'unique:decretos,nr,data';
+        // $rules['nr'][] = 'unique:decretos,nr,data';
+        $rules['nr'][] = Rule::unique('decretos')->where(fn (Builder $query) => $query->where('tipo_decreto', $request->get('tipo_decreto'))->where('nr', $request->get('nr'))->where('data', $request->get('data')));
         $validator = Validator::make($request->all(), $rules, $this->messages);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput()->with('from', 'decreto.store');
@@ -75,7 +81,7 @@ class DecretoController extends Controller
             $record->save();
             return redirect()->route('decreto.show', ['id' => $record->id])->with('success', 'Decreto cadastrado com sucesso!')->with('from', 'decreto.store');
         } catch (\Throwable $th) {
-            return back()->withErrors(['errors' => [$th->getMessage()]]);
+            return back()->withErrors(['errors' => [$th->getMessage()]])->withInput()->with('from', 'decreto.store');
         }
     }
 
@@ -257,7 +263,19 @@ class DecretoController extends Controller
     {
         try {
             $decreto = Decreto::where('id', $id)->get()->first();
-            $templateProcessor = new TemplateProcessor(public_path('templates/decreto.docx'));
+            switch($decreto->tipo_decreto) {
+                case 'D':
+                    $modelo = 'templates/decreto.docx';
+                    $fileName = 'decretos/DECRETO Nº %03d-%d credito adicional L%d.docx';
+                    break;
+                case 'M':
+                    $modelo = 'templates/resolucao-mesa.docx';
+                    $fileName = 'decretos/RESOLUÇÃO DE MESA Nº %03d-%d credito adicional L%d.docx';
+                    break;
+                default:
+                    throw new \Exception("Tipo de decreto inválido: {$decreto->tipo_decreto}");
+            }
+            $templateProcessor = new TemplateProcessor(public_path($modelo));
 
             $templateProcessor->setValue('nrDecreto', Fmt::docnumber($decreto->nr));
             $templateProcessor->setValue('dataDecreto', Fmt::dataPorExtenso($decreto->data));
@@ -372,7 +390,7 @@ class DecretoController extends Controller
             }
             $templateProcessor->cloneBlock('itemAnexo', 0, true, false, $replacements);
 
-            $outputFileName = sprintf('decretos/DECRETO Nº %03d-%d credito adicional L%d.docx', $decreto->nr, $decreto->lei->exercicio, $decreto->lei->nr);
+            $outputFileName = sprintf($fileName, $decreto->nr, $decreto->lei->exercicio, $decreto->lei->nr);
             $templateProcessor->saveAs(storage_path($outputFileName));
             return response()->download(storage_path($outputFileName));
         } catch (\Exception $th) {

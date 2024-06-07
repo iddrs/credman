@@ -33,7 +33,7 @@
             <caption class="ui header">Decretos cadastrados para o exercício de {{ $exercicio }}</caption>
             <thead>
                 <tr>
-                    {{-- <th class="center aligned">#</th> --}}
+                    <th class="left aligned">Tipo</th>
                     <th class="right aligned">Nº</th>
                     <th class="center aligned">Data</th>
                     <th class="center aligned">Lei nº</th>
@@ -45,7 +45,18 @@
                 @forelse ($decretos as $decreto)
                     <tr>
 
-                        {{-- <td class="center aligned">{{ $decreto->id }}</td> --}}
+                        <td class="left aligned">
+                            @switch($decreto->tipo_decreto)
+                                @case('D')
+                                    Decreto
+                                    @break
+                                @case('M')
+                                    Resolução de Mesa
+                                    @break
+                                @default
+                                    Indefinido
+                            @endswitch
+                        </td>
                         <td class="right aligned">
                             <a href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
                                 {{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}
@@ -71,8 +82,7 @@
                     </tr>
                 @empty
                     <tr>
-                        {{-- <td colspan="6">Nenhum decreto cadastrado no exercício de {{ $exercicio }}.</td> --}}
-                        <td colspan="5">Nenhum decreto cadastrado no exercício de {{ $exercicio }}.</td>
+                        <td colspan="6">Nenhum decreto cadastrado no exercício de {{ $exercicio }}.</td>
                     </tr>
                 @endforelse
             </tbody>
