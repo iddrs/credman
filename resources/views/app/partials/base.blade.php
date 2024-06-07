@@ -18,7 +18,8 @@
 
     <div style="margin-top: 5em"></div>
 
-    <aside class="ui container">
+    {{-- <aside class="ui container"> --}}
+    <aside>
         @yield('breadcrumb', '')
     </aside>
 
