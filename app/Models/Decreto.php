@@ -12,6 +12,7 @@ class Decreto extends Model
     use HasFactory;
 
     protected $fillable = [
+        'tipo_decreto',
         'nr',
         'data',
         'vl_credito',

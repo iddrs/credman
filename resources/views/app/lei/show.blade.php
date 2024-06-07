@@ -72,8 +72,7 @@
 
             <thead>
                 <tr>
-                    {{-- <th colspan="5"> --}}
-                    <th colspan="4">
+                    <th colspan="5">
                         <a class="ui labeled icon primary button" href="#nr">
                             <i class="plus icon"></i>
                             Novo decreto
@@ -81,7 +80,7 @@
                     </th>
                 </tr>
                 <tr>
-                    {{-- <th class="center aligned one wide">#</th> --}}
+                    <th class="left aligned">Tipo</th>
                     <th class="right aligned three wide">Nº</th>
                     <th class="right aligned three wide">Data</th>
                     <th class="right aligned two wide">Status</th>
@@ -92,7 +91,18 @@
             <tbody>
                 @forelse ($lei->decretos->sortByDesc('nr') as $decreto)
                     <tr>
-                        {{-- <td class="center aligned">{{ $decreto->id }}</td> --}}
+                        <td class="left aligned">
+                            @switch($decreto->tipo_decreto)
+                                @case('D')
+                                    Decreto
+                                    @break
+                                @case('M')
+                                    Resolução de Mesa
+                                    @break
+                                @default
+                                    Indefinido
+                            @endswitch
+                        </td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}</td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::date($decreto->data) }}</td>
                         <td class="right aligned">
@@ -112,8 +122,7 @@
                     </tr>
                 @empty
                     <tr>
-                        {{-- <td colspan="5">Nenhum decreto vinculado.</td> --}}
-                        <td colspan="4">Nenhum decreto vinculado.</td>
+                        <td colspan="5">Nenhum decreto vinculado.</td>
                     </tr>
                 @endforelse
             </tbody>

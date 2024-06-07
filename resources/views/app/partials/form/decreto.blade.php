@@ -8,7 +8,10 @@
         @include('app.partials.form.field.id', ['value' => old('id', $decreto->id ?? 0)])
         @include('app.partials.form.field.lei-id', ['value' => old('lei_id', $decreto->lei_id ?? $lei_id)])
         @include('app.partials.form.field.nr', ['value' => old('nr', $decreto->nr ?? '')])
+        @include('app.partials.form.field.decreto-tipo', ['value' => old('tipo_decreto', $decreto->tipo_decreto ?? '')])
         @include('app.partials.form.field.data', ['value' => old('data', $decreto->data ?? '')])
+    </div>
+    <div class="fields">
         @include('app.partials.form.field.valor', ['id' => 'vl_credito', 'label' => 'Créditos (R$)', 'value' => old('vl_credito', $decreto->vl_credito ?? 0)])
         @include('app.partials.form.field.valor', ['id' => 'vl_reducao', 'label' => 'Reduções (R$)', 'value' => old('vl_reducao', $decreto->vl_reducao ?? 0)])
         @include('app.partials.form.field.valor', ['id' => 'vl_superavit', 'label' => 'Superávit (R$)', 'value' => old('vl_superavit', $decreto->vl_superavit ?? 0)])
