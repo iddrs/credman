@@ -101,6 +101,7 @@
                     <caption class="ui header">Últimos decretos cadastrados</caption>
                     <thead>
                         <tr>
+                            <th class="right aligned">Tipo</th>
                             <th class="right aligned">Nº</th>
                             <th class="center aligned">Data</th>
                             <th class="center aligned">Lei nº</th>
@@ -111,7 +112,7 @@
                     <tbody>
                         @forelse ($ultimosDecretos as $decreto)
                             <tr>
-
+                                <td>{{ \App\Support\Enums\TiposDecreto::getLabel($decreto->tipo_decreto) }}</td>
                                 <td class="right aligned">
                                     <a href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
                                         {{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}
@@ -137,7 +138,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="5">Nenhum decreto cadastrado no exercício de {{ $exercicio }}.</td>
+                                <td colspan="6">Nenhum decreto cadastrado no exercício de {{ $exercicio }}.</td>
                             </tr>
                         @endforelse
                         <tr>
