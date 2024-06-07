@@ -20,7 +20,7 @@
 <div class="ui segment">
 
     <table class="ui striped celled table">
-        <caption class="ui header">Leis cadastradas</caption>
+        <caption class="ui left aligned header">Leis cadastradas</caption>
         <thead>
             <tr>
                 {{-- <th colspan="6"> --}}
