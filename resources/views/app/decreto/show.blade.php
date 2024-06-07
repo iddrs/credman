@@ -75,6 +75,10 @@
                     <a class="ui primary button" href="{{ route('decreto.verify', ['id' => $decreto->id]) }}">
                         Verificar
                     </a>
+                    <a href="{{ route('decreto.rubricas.update', ['id' => $decreto->id]) }}"
+                        class="ui button">
+                        Atualizar rubricas
+                    </a>
                 @else
                     <div class="right item">
                         <div class="ui buttons">

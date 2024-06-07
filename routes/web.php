@@ -45,6 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/decreto/{id}/close', [\App\Http\Controllers\DecretoController::class, 'close'])->name('decreto.close');
     Route::get('/decreto/{id}/open', [\App\Http\Controllers\DecretoController::class, 'open'])->name('decreto.open');
     Route::get('/decreto/{id}/docx', [\App\Http\Controllers\DecretoController::class, 'docx'])->name('decreto.docx');
+    Route::get('/decreto/{id}/rubricas/update', [\App\Http\Controllers\DecretoController::class, 'updateRubricas'])->name('decreto.rubricas.update');
 });
 
 //creditos

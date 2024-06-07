@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Decreto;
+use App\Models\Rubrica;
 use App\Support\Helpers\Fmt;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -398,5 +399,22 @@ class DecretoController extends Controller
         }
     }
 
+    public function updateRubricas($id)
+    {
+        try {
+            $decreto = Decreto::where('id', $id)->get()->first();
+            foreach ($decreto->creditos as $credito) {
+                    $rubrica = Rubrica::where('exercicio', date_create_from_format('Y-m-d', $decreto->data)->format('Y'))->where('acesso', $credito->acesso)->get()->first();
+                    if ($rubrica) $credito->update(['rubrica_id' => $rubrica->id]);
+            }
+            foreach ($decreto->reducoes as $reducao) {
+                    $rubrica = Rubrica::where('exercicio', date_create_from_format('Y-m-d', $decreto->data)->format('Y'))->where('acesso', $reducao->acesso)->get()->first();
+                    if ($rubrica) $reducao->update(['rubrica_id' => $rubrica->id]);
+            }
+            return redirect(route('decreto.show', ['id' => $id]))->with('success', "Rubricas atualizadas com sucesso.");
+        } catch (\Throwable $th) {
+            return back()->withErrors(['errors' => [$th->getMessage()]]);
+        }
+    }
 
 }
