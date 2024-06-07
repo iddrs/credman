@@ -54,7 +54,7 @@
                     <td class="center aligned">{{ $lei->tipo }}</td>
                     <td class="center aligned">
                         <div class="ui buttons">
-                            <a href="{{ route('lei.show', ['id' => $lei->id]) }}" class="ui primary icon button">
+                            <a href="{{ route('lei.show', ['id' => $lei->id]) }}" class="ui blue icon basic button">
                                 <i class="eye icon"></i>
                             </a>
                         </div>

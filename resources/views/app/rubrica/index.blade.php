@@ -61,11 +61,11 @@
                     <td class="center aligned">{{ \App\Support\Helpers\Fmt::fonte($rubrica->fonte) }}</td>
                     <td class="center aligned">{{ $rubrica->complemento }}</td>
                     <td class="center aligned">
-                        <div class="ui buttons">
-                            <a href="{{ route('rubrica.edit', ['id' => $rubrica->id]) }}" class="ui primary icon button">
+                        <div class="ui wrapping spaced buttons">
+                            <a href="{{ route('rubrica.edit', ['id' => $rubrica->id]) }}" class="ui blue icon basic button">
                                 <i class="edit icon"></i>
                             </a>
-                            <a href="{{ route('rubrica.delete', ['id' => $rubrica->id]) }}" class="ui negative icon button">
+                            <a href="{{ route('rubrica.delete', ['id' => $rubrica->id]) }}" class="ui negative icon basic button">
                                 <i class="trash icon"></i>
                             </a>
                         </div>

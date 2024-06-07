@@ -133,7 +133,7 @@
                         Encerrar
                     </a>
                 @else
-                    <a class="ui button" href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
+                    <a class="ui grey basic button" href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
                         Voltar
                     </a>
                 @endif

@@ -35,7 +35,7 @@
                             Novo
                         </a>
                         <a href="{{ route('decreto.creditos.rubricas.update', ['decreto_id' => $decreto->id]) }}"
-                            class="ui button">
+                            class="ui grey basic button">
                             Atualizar rubricas
                         </a>
                     </th>
@@ -157,7 +157,7 @@
 
 
                                 <a href="{{ route('decreto.credito.delete', ['id' => $credito->id, 'decreto_id' => $decreto->id]) }}"
-                                    class="ui red icon button">
+                                    class="ui red icon basic button">
                                     <i class="trash icon"></i>
                                 </a>
                             </div>

@@ -76,7 +76,7 @@
                                 <td class="center aligned">{{ $lei->tipo }}</td>
                                 <td class="center aligned">
                                     <div class="ui buttons">
-                                        <a href="{{ route('lei.show', ['id' => $lei->id]) }}" class="ui primary icon button">
+                                        <a href="{{ route('lei.show', ['id' => $lei->id]) }}" class="ui blue icon basic button">
                                             <i class="eye icon"></i>
                                         </a>
                                     </div>
@@ -89,7 +89,7 @@
                         @endforelse
                         <tr>
                             <td class="right aligned" colspan="5">
-                                <a class="ui primary basic button" href="{{ route('leis') }}" accesskey="ctrl+L">Ver todas</a>
+                                <a class="ui blue basic button" href="{{ route('leis') }}" accesskey="ctrl+L">Ver todas</a>
                             </td>
                         </tr>
                     </tbody>
@@ -128,7 +128,7 @@
                                 </td>
                                 <td class="center aligned">
                                     <div class="ui buttons">
-                                        <a class="ui icon primary button"
+                                        <a class="ui icon blue basic button"
                                             href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
                                             <i class="eye icon"></i>
                                         </a>
@@ -142,7 +142,7 @@
                         @endforelse
                         <tr>
                             <td class="right aligned" colspan="5">
-                                <a class="ui primary basic button" href="{{ route('decretos') }}" accesskey="ctrl+D">Ver todos</a>
+                                <a class="ui blue basic button" href="{{ route('decretos') }}" accesskey="ctrl+D">Ver todos</a>
                             </td>
                         </tr>
                     </tbody>

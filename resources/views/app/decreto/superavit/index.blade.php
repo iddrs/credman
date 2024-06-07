@@ -52,7 +52,7 @@
                         </td>
                         <td class="center aligned">
                             <a href="{{ route('decreto.superavit.delete', ['id' => $superavit->id, 'decreto_id' => $decreto->id]) }}"
-                                class="ui red icon button">
+                                class="ui red icon basic button">
                                 <i class="trash icon"></i>
                             </a>
                         </td>

@@ -51,12 +51,12 @@
             </div>
         </div>
 
-        <div class="ui buttons">
-            <a class="ui primary button" href="{{ route('lei.edit', ['id' => $lei->id]) }}">
+        <div class="ui wrapping spaced buttons">
+            <a class="ui blue basic button" href="{{ route('lei.edit', ['id' => $lei->id]) }}">
                 {{-- <i class="edit icon"></i> --}}
                 Editar
             </a>
-            <a class="ui negative button" href="{{ route('lei.delete', ['id' => $lei->id]) }}">
+            <a class="ui negative basic button" href="{{ route('lei.delete', ['id' => $lei->id]) }}">
                 {{-- <i class="trash icon"></i> --}}
                 Excluir
             </a>
@@ -73,8 +73,7 @@
             <thead>
                 <tr>
                     <th colspan="5">
-                        <a class="ui primary button" href="#nr">
-                            {{-- <i class="plus icon"></i> --}}
+                        <a class="ui primary button" href="#nr" accesskey="ctrl+n">
                             Novo
                         </a>
                     </th>
@@ -114,7 +113,7 @@
                         </td>
                         <td class="center aligned">
                             <div class="ui buttons">
-                                <a class="ui icon primary button" href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
+                                <a class="ui icon blue basic button" href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
                                     <i class="eye icon"></i>
                                 </a>
                             </div>

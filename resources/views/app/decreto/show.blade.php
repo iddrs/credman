@@ -67,7 +67,7 @@
     <div class="ui menu">
         @if (!$decreto->fechado)
             <div class="item">
-                <div class="ui buttons">
+                <div class="ui wrapping spaced buttons">
                     <a class="ui green button"
                         href="{{ route('decreto.creditos', ['decreto_id' => $decreto->id]) }}">
                         Vincular
@@ -76,17 +76,17 @@
                         Verificar
                     </a>
                     <a href="{{ route('decreto.rubricas.update', ['id' => $decreto->id]) }}"
-                        class="ui button">
+                        class="ui grey basic button">
                         Atualizar rubricas
                     </a>
                 @else
                     <div class="right item">
-                        <div class="ui buttons">
-                            <a class="ui green button"
+                        <div class="ui wrapping spaced buttons">
+                            <a class="ui blue button"
                                 href="{{ route('decreto.docx', ['id' => $decreto->id]) }}">
                                 Gerar MS Word
                             </a>
-                            <a class="ui teal button"
+                            <a class="ui green button"
                                 href="{{ route('decreto.open', ['id' => $decreto->id]) }}">
                                 Reabrir
                             </a>
@@ -96,11 +96,11 @@
 
     @if (!$decreto->fechado)
         <div class="right item">
-            <div class="ui buttons">
-                <a class="ui primary button" href="{{ route('decreto.edit', ['id' => $decreto->id]) }}">
+            <div class="ui wrapping spaced buttons">
+                <a class="ui blue basic button" href="{{ route('decreto.edit', ['id' => $decreto->id]) }}">
                     Editar
                 </a>
-                <a class="ui negative button" href="{{ route('decreto.delete', ['id' => $decreto->id]) }}">
+                <a class="ui negative basic button" href="{{ route('decreto.delete', ['id' => $decreto->id]) }}">
                     Excluir
                 </a>
             </div>

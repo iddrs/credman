@@ -34,7 +34,7 @@
                         <a href="#acesso" class="ui primary button" accesskey="ctrl+a">
                             Nova
                         </a>
-                        <a href="{{ route('decreto.reducoes.rubricas.update', ['decreto_id' => $decreto->id]) }}" class="ui button">
+                        <a href="{{ route('decreto.reducoes.rubricas.update', ['decreto_id' => $decreto->id]) }}" class="ui grey basic button">
                             Atualizar rubricas
                         </a>
                     </th>
@@ -68,7 +68,7 @@
                         <td class="right aligned">{{ $reducao->rubrica->complemento ?? '' }}</td>
                         <td class="center aligned">
                             <a href="{{ route('decreto.reducao.delete', ['id' => $reducao->id, 'decreto_id' => $decreto->id]) }}"
-                                class="ui red icon button">
+                                class="ui red icon basic button">
                                 <i class="trash icon"></i>
                             </a>
                         </td>

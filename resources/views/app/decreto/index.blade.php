@@ -73,7 +73,7 @@
                         </td>
                         <td class="center aligned">
                             <div class="ui buttons">
-                                <a class="ui icon primary button"
+                                <a class="ui icon blue basic button"
                                     href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
                                     <i class="eye icon"></i>
                                 </a>
