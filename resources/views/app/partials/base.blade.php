@@ -22,7 +22,8 @@
         @yield('breadcrumb', '')
     </aside>
 
-    <main class="ui container"><!-- main content -->
+    {{-- <main class="ui container"><!-- main content --> --}}
+    <main><!-- main content -->
 
         <article class="ui basic segment">
 
