@@ -38,7 +38,7 @@
                     <th class="center aligned">Data</th>
                     <th class="center aligned">Lei nº</th>
                     <th class="center aligned">Status</th>
-                    <th class="right aligned">Ações</th>
+                    <th class="center aligned">Ações</th>
                 </tr>
             </thead>
             <tbody>

@@ -6,6 +6,8 @@
 
 @extends('app.partials.base')
 
+@section('title', 'Dashboard')
+
 @section('content')
     @include('app.partials.selector.exercicio', ['route' => $route, 'exercicio' => $exercicio])
 
