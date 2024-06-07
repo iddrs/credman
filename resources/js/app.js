@@ -115,9 +115,9 @@ $('form').on('submit', function (e) {
 import hotkeys from 'hotkeys-js';
 
 // Necessário para habilitar hotkeys em campos de formulário.
-hotkeys.filter = function(event) {
+hotkeys.filter = function (event) {
     var target = event.target || event.srcElement;
-    var tagName = target,tagName;
+    var tagName = target, tagName;
     return !(target.isContentEditable || tagName === 'INPUT' || tagName === 'TEXTAREA' || tagName === 'SELECT');
 };//end filter
 
@@ -127,15 +127,15 @@ $("[accesskey]").each(function () {
     label.innerText = this.accessKey;
     this.appendChild(label);
     var element = this;
-    if (this.tagName === 'A'){
-        if(this.hasAttribute('href')){
+    if (this.tagName === 'A') {
+        if (this.hasAttribute('href')) {
             hotkeys(this.accessKey, function (event, handler) {
                 event.preventDefault()
                 window.location.href = element.href;
             });
         }
     }
-    if (this.tagName === 'BUTTON'){
+    if (this.tagName === 'BUTTON') {
         hotkeys(this.accessKey, function (event, handler) {
             event.preventDefault()
             $(element).closest('form').submit();
@@ -143,3 +143,23 @@ $("[accesskey]").each(function () {
     }
 });
 // end Hotkeys
+
+// mask inputs
+import 'jquery-mask-plugin';
+
+var maskSpec = {
+    'projativ': '0.000',
+    'despesa': '0.0.00.00',
+    'uniorcam': '00.00',
+    'fonte': '000.00',
+    'receita': '0.0.0.0.00.0.0.00.00.00'
+};
+
+Object.keys(maskSpec).forEach(function (elId) {
+    let mask = maskSpec[elId];
+    $('#' + elId).mask(mask);
+    $('#' + elId).closest('form').on('submit', function (event) {
+        $('#' + elId).unmask();
+    });
+})
+// end mask imputs
