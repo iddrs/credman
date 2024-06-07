@@ -68,7 +68,7 @@
 
         <table class="ui striped celled table">
 
-            <caption class="ui dividing header">Decretos vinculados a esta lei</caption>
+            <caption class="ui left aligned header">Decretos vinculados a esta lei</caption>
 
             <thead>
                 <tr>
@@ -79,10 +79,10 @@
                     </th>
                 </tr>
                 <tr>
-                    <th class="left aligned">Tipo</th>
+                    <th class="left alignedthree wide">Tipo</th>
                     <th class="right aligned three wide">Nº</th>
-                    <th class="right aligned three wide">Data</th>
-                    <th class="right aligned two wide">Status</th>
+                    <th class="center aligned three wide">Data</th>
+                    <th class="center aligned two wide">Status</th>
                     <th class="center aligned three wide">Ações</th>
                 </tr>
             </thead>
@@ -103,8 +103,8 @@
                             @endswitch
                         </td>
                         <td class="right aligned">{{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}</td>
-                        <td class="right aligned">{{ \App\Support\Helpers\Fmt::date($decreto->data) }}</td>
-                        <td class="right aligned">
+                        <td class="center aligned">{{ \App\Support\Helpers\Fmt::date($decreto->data) }}</td>
+                        <td class="center aligned">
                             @if ($decreto->fechado)
                                 @include('app.partials.closed')
                             @else
