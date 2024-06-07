@@ -106,4 +106,25 @@ class Fmt {
             ];
             return $dia . ' de ' . $meses[$mes] . ' de ' . $ano;
         }
+
+        public static function userLabel($userName): string
+        {
+            $boom = explode(' ', $userName);
+            $label = array_shift($boom);
+            foreach ($boom as $value) {
+                switch ($value) {
+                    case 'de':
+                    case 'da':
+                    case 'das':
+                    case 'do':
+                    case 'dos':
+                    case 'e':
+                        break;
+                    default:
+                        $label .= ' ' . strtoupper(substr($value, 0, 1));
+                        break;
+                }
+            }
+            return $label;
+        }
 }

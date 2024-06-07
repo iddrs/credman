@@ -18,7 +18,7 @@
         @if (auth()->check())
             <div class="item">
                 <div class="ui buttons">
-                    <a class="ui teal button" href="#">{{ auth()->user()->name }}</a>
+                    <a class="ui teal button" href="#">{{ \App\Support\Helpers\Fmt::userLabel(auth()->user()->name) }}</a>
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
                         <button type="submit" class="ui basic button">Sair</button>
