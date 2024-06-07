@@ -25,7 +25,7 @@ class DashboardController extends Controller
         $totalExcesso = $this->totalPorOrigem($exercicio, 3);
         $totalReabertura = $this->totalPorOrigem($exercicio, 4);
         $ultimosDecretos = $decretos = DB::table('decretos')->join('leis', 'decretos.lei_id', '=', 'leis.id')->where('leis.exercicio', $exercicio)->select('decretos.*', 'leis.nr as lei')->orderBy('nr', 'desc')->limit(5)->get();
-        $ultimasLeis = DB::table('leis')->orderBy('id', 'desc')->limit(5)->get();
+        $ultimasLeis = DB::table('leis')->where('exercicio', $exercicio)->orderBy('id', 'desc')->limit(5)->get();
 
         return view('app.index', compact('exercicio', 'route', 'totalCredito', 'totalSuplementar', 'totalEspecial', 'totalExtraordinario', 'totalLimiteSuplementacao', 'totalReducao', 'totalSuperavit', 'totalExcesso', 'totalReabertura', 'ultimosDecretos', 'ultimasLeis'));
     }
