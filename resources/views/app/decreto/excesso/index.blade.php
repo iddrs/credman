@@ -10,7 +10,7 @@
         <a class="section" href="{{ route('lei.show', ['id' => $decreto->lei->id]) }}">Lei nº
             {{ \App\Support\Helpers\Fmt::docnumber($decreto->lei->nr) }}</a>
         <div class="divider"> / </div>
-        <a class="section" href="{{ route('decreto.show', ['id' => $decreto->id]) }}">Decreto nº
+        <a class="section" href="{{ route('decreto.show', ['id' => $decreto->id]) }}">{{\App\Support\Enums\TiposDecreto::getLabel($decreto->tipo_decreto)}} nº
             {{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}</a>
         <div class="divider"> / </div>
         <div class="active section">Excesso de arrecadação</div>
@@ -19,8 +19,11 @@
 
 @section('content')
 
+@php
+    $tipo = \App\Support\Enums\TiposDecreto::getLabel($decreto->tipo_decreto);
+@endphp
     @include('app.partials.header', [
-        'title' => 'Decreto nº ' . \App\Support\Helpers\Fmt::docnumber($decreto->nr),
+        'title' => $tipo.' nº ' . \App\Support\Helpers\Fmt::docnumber($decreto->nr),
     ])
 
     <div class="ui segment">

@@ -111,7 +111,8 @@ class DecretoController extends Controller
         $validated = $validator->validated();
         try {
             $record->update($validated);
-            return redirect(route('decreto.show', ['id' => $record->id]))->with('success', "Decreto nº {$record->nr} ({$record->id}) atualizado com sucesso!");
+            $tipo = \App\Support\Enums\TiposDecreto::getLabel($record->tipo_decreto);
+            return redirect(route('decreto.show', ['id' => $record->id]))->with('success', "$tipo nº {$record->nr} ({$record->id}) atualizado com sucesso!");
         } catch (\Throwable $th) {
             return back()->withErrors(['errors' => [$th->getMessage()]]);
         }
@@ -132,8 +133,9 @@ class DecretoController extends Controller
             }
             $nr = Fmt::docnumber($record->nr);
             $lei = $record->lei->id;
+            $tipo = \App\Support\Enums\TiposDecreto::getLabel($record->tipo_decreto);
             $record->delete();
-            return redirect(route('lei.show', ['id' => $lei]))->with('success', "Decreto nº {$nr} ({$id}) excluído com sucesso!");
+            return redirect(route('lei.show', ['id' => $lei]))->with('success', "$tipo nº {$nr} ({$id}) excluído com sucesso!");
         } catch (\Throwable $th) {
             return back()->withErrors(['errors' => [$th->getMessage()]]);
         }

@@ -10,7 +10,7 @@
         <a class="section" href="{{ route('lei.show', ['id' => $decreto->lei->id]) }}">Lei nº
             {{ \App\Support\Helpers\Fmt::docnumber($decreto->lei->nr) }}</a>
         <div class="divider"> / </div>
-        <a class="section" href="{{ route('decreto.show', ['id' => $decreto->id]) }}">Decreto nº
+        <a class="section" href="{{ route('decreto.show', ['id' => $decreto->id]) }}">{{\App\Support\Enums\TiposDecreto::getLabel($decreto->tipo_decreto)}} nº
             {{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}</a>
         <div class="divider"> / </div>
         <a class="section" href="{{ route('decreto.creditos', ['decreto_id' => $decreto->id]) }}">Créditos</a>
@@ -22,8 +22,11 @@
 @section('content')
 
 <div class="ui segment">
+    @php
+        $tipo = \App\Support\Enums\TiposDecreto::getLabel($decreto->tipo_decreto);
+    @endphp
     @include('app.partials.header', [
-        'title' => 'Potencial problema ao vincular o decreto nº '.\App\Support\Helpers\Fmt::docnumber($decreto->nr),
+        'title' => 'Potencial problema ao vincular o '.$tipo.' nº '.\App\Support\Helpers\Fmt::docnumber($decreto->nr),
         ])
 
         <div class="ui error message">

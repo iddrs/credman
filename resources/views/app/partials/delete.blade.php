@@ -11,6 +11,6 @@
 
     <div class="ui buttons">
         <a href="{{ $confirm }}" class="ui red button">Sim</a>
-        <a href="{{ $cancel }}" class="ui primary button">Cancelar</a>
+        <a href="{{ $cancel }}" class="ui grey basic button">Cancelar</a>
     </div>
 </div>
