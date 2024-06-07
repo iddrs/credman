@@ -53,7 +53,7 @@
         <div class="ui two column centered grid">
             <div class="column">
                 <table class="ui striped celled table">
-                    <caption class="ui header">Últimas leis cadastradas</caption>
+                    <caption class="ui left aligned header">Últimas leis cadastradas</caption>
                     <thead>
                         <tr>
                             <th class="right aligned">Nº</th>
@@ -98,28 +98,28 @@
 
             <div class="column">
                 <table class="ui striped celled table">
-                    <caption class="ui header">Últimos decretos cadastrados</caption>
+                    <caption class="ui left aligned header">Últimos decretos cadastrados</caption>
                     <thead>
                         <tr>
-                            <th class="right aligned">Tipo</th>
+                            <th class="left aligned">Tipo</th>
                             <th class="right aligned">Nº</th>
                             <th class="center aligned">Data</th>
-                            <th class="center aligned">Lei nº</th>
+                            <th class="right aligned">Lei nº</th>
                             <th class="center aligned">Status</th>
-                            <th class="right aligned">Ações</th>
+                            <th class="center aligned">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($ultimosDecretos as $decreto)
                             <tr>
                                 <td>{{ \App\Support\Enums\TiposDecreto::getLabel($decreto->tipo_decreto) }}</td>
-                                <td class="right aligned">
+                                <td class="left aligned">
                                     <a href="{{ route('decreto.show', ['id' => $decreto->id]) }}">
                                         {{ \App\Support\Helpers\Fmt::docnumber($decreto->nr) }}
                                     </a>
                                 </td>
                                 <td class="center aligned">{{ \App\Support\Helpers\Fmt::date($decreto->data) }}</td>
-                                <td class="center aligned">{{ \App\Support\Helpers\Fmt::docnumber($decreto->lei) }}</td>
+                                <td class="right aligned">{{ \App\Support\Helpers\Fmt::docnumber($decreto->lei) }}</td>
                                 <td class="center aligned">
                                     @if ($decreto->fechado)
                                         @include('app.partials.closed')
@@ -142,7 +142,7 @@
                             </tr>
                         @endforelse
                         <tr>
-                            <td class="right aligned" colspan="5">
+                            <td class="right aligned" colspan="6">
                                 <a class="ui blue basic button" href="{{ route('decretos') }}" accesskey="ctrl+D">Ver todos</a>
                             </td>
                         </tr>
