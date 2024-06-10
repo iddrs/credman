@@ -134,7 +134,7 @@ class LeiController extends Controller
         $decreto = Decreto::where('id', $decreto_id)->get()->first();
         $data_limite = $decreto->data;
         $lei = $decreto->lei->id;
-        $valor = DB::select("select sum(vinculos.valor) as valor from vinculos where vinculos.limite = 1 and decreto_id in (select id from decretos where lei_id = {$lei} and data <= '{$data_limite}' and tipo_decreto = {$tipo_decreto})");
+        $valor = DB::select("select sum(vinculos.valor) as valor from vinculos where vinculos.limite = 1 and decreto_id in (select id from decretos where lei_id = {$lei} and data <= '{$data_limite}' and tipo_decreto = '{$tipo_decreto}')");
         $val = $valor[0]->valor;
         switch ($decreto->tipo_decreto) {
             case 'D';
