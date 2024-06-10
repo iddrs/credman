@@ -138,16 +138,16 @@ class LeiController extends Controller
         $val = $valor[0]->valor;
         switch ($decreto->tipo_decreto) {
             case 'D';
-                return $val / $decreto->bc_limite_exec;
+                $bc_limite = $decreto->lei->bc_limite_exec;
                 break;
             case 'M';
-            return $val / $decreto->bc_limite_leg;
+                $bc_limite = $decreto->lei->bc_limite_leg;
                 break;
             default:
                 throw new \Exception('Tipo de decreto inválido');
                 break;
         }
-
+        return $val / $bc_limite;
     }
 
 }
