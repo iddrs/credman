@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lei;
 use App\Models\Rubrica;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -64,9 +65,30 @@ class RubricaController extends Controller
             $record->exercicio = $exercicio;
             $record->user_id = auth()->user()->id;
             $record->save();
+            $this->updateRubricas($exercicio, $validated['acesso'], $record->id);
             return redirect()->route('rubricas', $exercicio)->with('success', 'Rubrica criada com sucesso!')->with('from', 'rubrica.store');
         } catch (\Throwable $th) {
-            return back()->withErrors(['errors' => [$th->getMessage()]]);
+            return back()->withErrors(['errors' => [$th->getMessage()]])->withInput()->with('from', 'rubrica.store');
+        }
+    }
+
+
+    public function updateRubricas($exercicio, $acesso, $rubrica_id)
+    {
+        try {
+            $leis = Lei::where('exercicio', $exercicio)->get();
+            foreach ($leis as $lei) {
+                $creditos = $lei->creditos->where('acesso', $acesso)->where('rubrica_id', 0);
+                foreach ($creditos as $credito) {
+                    $credito->update(['rubrica_id' => $rubrica_id]);
+                }
+                $reducoes = $lei->reducoes->where('acesso', $acesso)->where('rubrica_id', 0);
+                foreach ($reducoes as $reducao) {
+                    $reducao->update(['rubrica_id' => $rubrica_id]);
+                }
+            }
+        } catch (\Throwable $th) {
+            return back()->withErrors(['errors' => [$th->getMessage()]])->withInput()->with('from', 'rubrica.store');
         }
     }
 

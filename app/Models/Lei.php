@@ -35,4 +35,9 @@ class Lei extends Model
     {
         return $this->hasManyThrough(Credito::class, Decreto::class);
     }
+
+    public function reducoes(): HasManyThrough
+    {
+        return $this->hasManyThrough(Reducao::class, Decreto::class);
+    }
 }
