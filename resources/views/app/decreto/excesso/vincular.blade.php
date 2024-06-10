@@ -74,7 +74,7 @@
     <div class="ui green segment">
 
         <table class="ui striped celled table">
-            <caption class="ui dividing header">Excessos na mesma fonte a vincular</caption>
+            <caption class="ui left aligned header">Excessos na mesma fonte a vincular</caption>
             <thead>
                 <tr>
                     {{-- <th class="center aligned">#</th> --}}
@@ -135,7 +135,7 @@
     <div class="ui blue segment">
 
         <table class="ui striped celled table">
-            <caption class="ui dividing header">Excessos vinculados</caption>
+            <caption class="ui left aligned header">Excessos vinculados</caption>
             <thead>
                 <tr>
                     {{-- <th class="center aligned">#</th> --}}
@@ -200,7 +200,7 @@
     <div class="ui red segment">
 
         <table class="ui striped celled table">
-            <caption class="ui dividing header">Excessos em outras fontes a vincular</caption>
+            <caption class="ui left aligned header">Excessos em outras fontes a vincular</caption>
             <thead>
                 <tr>
                     {{-- <th class="center aligned">#</th> --}}

@@ -28,7 +28,7 @@
 <div class="ui segment">
 
     <table class="ui striped celled table">
-        <caption class="ui header">Rubricas cadastradas em {{ $exercicio }}</caption>
+        <caption class="ui left aligned header">Rubricas cadastradas em {{ $exercicio }}</caption>
         <thead>
             <tr>
                 {{-- <th colspan="8"> --}}

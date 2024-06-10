@@ -29,7 +29,7 @@
     <div class="ui segment">
 
         <table class="ui striped celled table">
-            <caption class="ui dividing header">Excessos de arrecadação lançados</caption>
+            <caption class="ui left aligned header">Excessos de arrecadação lançados</caption>
             <thead>
                 <tr>
                     {{-- <th colspan="5"> --}}

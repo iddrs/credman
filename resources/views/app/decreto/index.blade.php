@@ -30,7 +30,7 @@
     <div class="ui segment">
 
         <table class="ui striped celled table">
-            <caption class="ui header">Decretos cadastrados para o exercício de {{ $exercicio }}</caption>
+            <caption class="ui left aligned header">Decretos cadastrados para o exercício de {{ $exercicio }}</caption>
             <thead>
                 <tr>
                     <th class="left aligned">Tipo</th>

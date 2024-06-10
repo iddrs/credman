@@ -56,7 +56,7 @@
     <div class="ui segment">
 
         <table class="ui celled compact table">
-            <caption class="ui dividing header">Erros detectados</caption>
+            <caption class="ui left aligned header">Erros detectados</caption>
             <thead>
                 <tr>
                     <td colspan="5">
@@ -99,7 +99,7 @@
     <div class="ui segment">
 
         <table class="ui celled compact table">
-            <caption class="ui dividing header">Avisos detectados</caption>
+            <caption class="ui left aligned header">Avisos detectados</caption>
             <thead>
                 <tr>
                     <td colspan="5">

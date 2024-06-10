@@ -29,7 +29,7 @@
     <div class="ui segment">
 
         <table class="ui striped celled table">
-            <caption class="ui dividing header">Reduções lançadas</caption>
+            <caption class="ui left aligned header">Reduções lançadas</caption>
             <thead>
                 <tr>
                     {{-- <th colspan="11"> --}}
