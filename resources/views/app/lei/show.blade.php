@@ -73,7 +73,7 @@
             <thead>
                 <tr>
                     <th colspan="5">
-                        <a class="ui primary button" href="#nr" accesskey="ctrl+n">
+                        <a class="ui primary button" href="#nr" accesskey="ctrl+a">
                             Novo
                         </a>
                     </th>
