@@ -17,7 +17,8 @@ class Lei extends Model
         'data',
         'exercicio',
         'tipo',
-        'bc_limite',
+        'bc_limite_exec',
+        'bc_limite_leg',
         'user_id',
     ];
 

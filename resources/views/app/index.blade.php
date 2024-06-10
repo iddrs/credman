@@ -12,39 +12,72 @@
     @include('app.partials.selector.exercicio', ['route' => $route, 'exercicio' => $exercicio])
 
     <div class="ui segment">
-        <div class="ui five column centered grid">
+        <div class="ui four column centered grid">
             <div class="three wide column">
                 <div class="ui tiny statistic">
-                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalCredito) }}</div>
                     <div class="label">Total de Créditos</div>
+                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalCredito) }}</div>
                 </div>
             </div>
             <div class="three wide column">
 
                 <div class="ui tiny statistic">
-                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalSuplementar) }}</div>
                     <div class="label">Total de Suplementar</div>
+                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalSuplementar) }}</div>
                 </div>
             </div>
             <div class="three wide column">
 
                 <div class="ui tiny statistic">
-                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalEspecial) }}</div>
                     <div class="label">Total de Especial</div>
+                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalEspecial) }}</div>
                 </div>
             </div>
             <div class="three wide column">
 
                 <div class="ui tiny statistic">
-                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalExtraordinario) }}</div>
                     <div class="label">Total de Extraordinário</div>
+                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalExtraordinario) }}</div>
                 </div>
             </div>
-            <div class="three wide column">
+            {{-- <div class="three wide column">
 
                 <div class="ui tiny statistic">
                     <div class="value">{{ number_format($totalLimiteSuplementacao * 100, 2, ',', '.') }}%</div>
                     <div class="label">Limite de suplementação</div>
+                </div>
+            </div> --}}
+        </div>
+    </div>
+
+
+    <div class="ui segment">
+        <div class="ui four column centered grid">
+            <div class="three wide column">
+                <div class="ui tiny statistic">
+                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalReducao) }}</div>
+                    <div class="label">Total por Redução</div>
+                </div>
+            </div>
+            <div class="three wide column">
+
+                <div class="ui tiny statistic">
+                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalSuperavit) }}</div>
+                    <div class="label">Total por Superávit</div>
+                </div>
+            </div>
+            <div class="three wide column">
+
+                <div class="ui tiny statistic">
+                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalExcesso) }}</div>
+                    <div class="label">Total por Excesso</div>
+                </div>
+            </div>
+            <div class="three wide column">
+
+                <div class="ui tiny statistic">
+                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalReabertura) }}</div>
+                    <div class="label">Total por Reabertura</div>
                 </div>
             </div>
         </div>
@@ -155,35 +188,5 @@
     </div>
 
 
-    <div class="ui segment">
-        <div class="ui four column centered grid">
-            <div class="three wide column">
-                <div class="ui tiny statistic">
-                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalReducao) }}</div>
-                    <div class="label">Total por Redução</div>
-                </div>
-            </div>
-            <div class="three wide column">
 
-                <div class="ui tiny statistic">
-                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalSuperavit) }}</div>
-                    <div class="label">Total por Superávit</div>
-                </div>
-            </div>
-            <div class="three wide column">
-
-                <div class="ui tiny statistic">
-                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalExcesso) }}</div>
-                    <div class="label">Total por Excesso</div>
-                </div>
-            </div>
-            <div class="three wide column">
-
-                <div class="ui tiny statistic">
-                    <div class="value">{{ App\Support\Helpers\Fmt::money($totalReabertura) }}</div>
-                    <div class="label">Total por Reabertura</div>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection

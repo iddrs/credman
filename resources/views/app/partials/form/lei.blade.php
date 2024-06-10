@@ -10,7 +10,8 @@
         @include('app.partials.form.field.data', ['value' => old('data', $lei->data ?? '')])
         @include('app.partials.form.field.exercicio', ['value' => old('exercicio', $lei->exercicio ?? '')])
         @include('app.partials.form.field.lei-tipo', ['value' => old('tipo', $lei->tipo ?? '')])
-        @include('app.partials.form.field.valor', ['id' => 'bc_limite', 'label' => 'BC Limite (R$)', 'value' => old('bc_limite', $lei->bc_limite ?? 0)])
+        @include('app.partials.form.field.valor', ['id' => 'bc_limite_exec', 'label' => 'BC Lim. Exec. (R$)', 'value' => old('bc_limite_exec', $lei->bc_limite_exec ?? 0)])
+        @include('app.partials.form.field.valor', ['id' => 'bc_limite_leg', 'label' => 'BC Lim. Leg. (R$)', 'value' => old('bc_limite_leg', $lei->bc_limite_leg ?? 0)])
     </div>
 
     <div class="ui buttons">

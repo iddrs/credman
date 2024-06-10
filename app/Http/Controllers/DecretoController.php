@@ -331,7 +331,7 @@ class DecretoController extends Controller
                 $art++;
                 $templateProcessor->cloneBlock('limite', 1, true, true);
                 $templateProcessor->setValue('artigo#1', $art);
-                $templateProcessor->setValue('percentualLimite#1', number_format(LeiController::calcLimiteAteDecreto($decreto->id) / $decreto->lei->bc_limite * 100, 4, ',', '.'));
+                $templateProcessor->setValue('percentualLimite#1', number_format(LeiController::calcLimiteAteDecreto($decreto->id, $decreto->tipo_decreto) * 100, 4, ',', '.'));
             }
             $templateProcessor->cloneBlock('limite', 0, true, true);
 

@@ -18,7 +18,8 @@ class LeiController extends Controller
         'nr' => ['required', 'integer',],
         'data' => ['required', 'date', 'date_format:Y-m-d'],
         'exercicio' => ['required', 'integer', 'min:1', 'digits:4'],
-        'bc_limite' => ['required', 'decimal:0,2', 'min:0'],
+        'bc_limite_exec' => ['required', 'decimal:0,2', 'min:0'],
+        'bc_limite_leg' => ['required', 'decimal:0,2', 'min:0'],
     ];
 
     protected array $messages = [
@@ -34,9 +35,12 @@ class LeiController extends Controller
             'exercicio.digits' => 'O exer´cio deve ter 4 dígitos.',
             'tipo.required' => 'Campo obrigatório.',
             'tipo.enum' => 'Opção inválida.',
-            'bc_limite.required' => 'Campo obrigatório.',
-            'bc_limite.decimal' => 'Apenas números são aceitos.',
-            'bc_limite.min' => 'O valor deve ser positivo.',
+            'bc_limite_exec.required' => 'Campo obrigatório.',
+            'bc_limite_exec.decimal' => 'Apenas números são aceitos.',
+            'bc_limite_exec.min' => 'O valor deve ser positivo.',
+            'bc_limite_leg.required' => 'Campo obrigatório.',
+            'bc_limite_leg.decimal' => 'Apenas números são aceitos.',
+            'bc_limite_leg.min' => 'O valor deve ser positivo.',
     ];
 
     public function index()
@@ -125,13 +129,24 @@ class LeiController extends Controller
         }
     }
 
-    public static function calcLimiteAteDecreto($decreto_id)
+    public static function calcLimiteAteDecreto($decreto_id, $tipo_decreto)
     {
         $decreto = Decreto::where('id', $decreto_id)->get()->first();
         $data_limite = $decreto->data;
         $lei = $decreto->lei->id;
-        $valor = DB::select("select sum(vinculos.valor) as valor from vinculos where vinculos.limite = 1 and decreto_id in (select id from decretos where lei_id = {$lei} and data <= '{$data_limite}')");
-        return $valor[0]->valor;
+        $valor = DB::select("select sum(vinculos.valor) as valor from vinculos where vinculos.limite = 1 and decreto_id in (select id from decretos where lei_id = {$lei} and data <= '{$data_limite}' and tipo_decreto = {$tipo_decreto})");
+        $val = $valor[0]->valor;
+        switch ($decreto->tipo_decreto) {
+            case 'D';
+                return $val / $decreto->bc_limite_exec;
+                break;
+            case 'M';
+            return $val / $decreto->bc_limite_leg;
+                break;
+            default:
+                throw new \Exception('Tipo de decreto inválido');
+                break;
+        }
 
     }
 
