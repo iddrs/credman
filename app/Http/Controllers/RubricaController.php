@@ -14,7 +14,7 @@ class RubricaController extends Controller
     protected array $rules = [
         'acesso' => ['required', 'integer',],
         'uniorcam' => ['required', 'string', 'digits:4', 'regex:/[0-9]{4}/',],
-        'projativ' => ['required', 'integer', 'min:1'],
+        'projativ' => ['required', 'regex:/[0|1|2]([0-9]{3})/'],
         'despesa' => ['required', 'string', 'digits:6', 'regex:/[0-9]{6}/',],
         'fonte' => ['required', 'string', 'digits:5', 'regex:/[0-9]{5}/',],
         'complemento' => ['string', 'digits:4', 'regex:/[0-9]{4}/', 'nullable'],
@@ -27,8 +27,7 @@ class RubricaController extends Controller
             'uniorcam.required' => 'Campo obrigatório.',
             'uniorcam' => 'Formato inválido.',
             'projativ.required' => 'Campo obrigatório.',
-            'projativ.integer' => 'Apenas números são aceitos.',
-            'projativ.min' => 'O valor deve ser maior ou igual a 1.',
+            'projativ.regex' => 'Formato inválido: deve começar com 0, 1 ou 2 seguido de três dígitos.',
             'despesa.required' => 'Campo obrigatório.',
             'despesa' => 'Formato inválido.',
             'fonte.required' => 'Campo obrigatório.',
