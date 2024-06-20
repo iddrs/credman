@@ -339,7 +339,8 @@ class DecretoController extends Controller
             $templateProcessor->setValue('artigo', $art);
 
             $replacements = [];
-            foreach ($decreto->vinculos as $vinculo) {
+            foreach ($decreto->vinculos as $k =>$vinculo) {
+
                 $creditoValor = Fmt::money($vinculo->valor);
                 $credito = $vinculo->credito;
                 switch ($credito->tipo) {
@@ -382,6 +383,13 @@ class DecretoController extends Controller
                 if(!is_null($vinculo->excesso_id)){
                     $origemCodificacao = sprintf('%s %s', Fmt::receita($vinculo->excesso->receita), Fmt::fonte($vinculo->excesso->fonte));
                 }
+
+                if(($k + 1) === sizeof($decreto->vinculos)) {
+                    $final = '.';
+                } else {
+                    $final = ';';
+                }
+                $origemCodificacao .= $final;
 
                 $replacements[] = [
                     'creditoTipo' => $creditoTipo,
