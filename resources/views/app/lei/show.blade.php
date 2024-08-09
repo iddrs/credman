@@ -45,8 +45,15 @@
             <div class="item">
                 <i class="tag icon"></i>
                 <div class="content">
-                    <div class="description">BC Limite:</div>
-                    <div class="header">{{ \App\Support\Helpers\Fmt::money($lei->bc_limite) }}</div>
+                    <div class="description">BC Limite do Executivo:</div>
+                    <div class="header">{{ \App\Support\Helpers\Fmt::money($lei->bc_limite_exec) }}</div>
+                </div>
+            </div>
+            <div class="item">
+                <i class="tag icon"></i>
+                <div class="content">
+                    <div class="description">BC Limite do Legislativo:</div>
+                    <div class="header">{{ \App\Support\Helpers\Fmt::money($lei->bc_limite_leg) }}</div>
                 </div>
             </div>
         </div>
