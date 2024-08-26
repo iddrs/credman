@@ -14,7 +14,7 @@ class RubricaController extends Controller
     protected array $rules = [
         'acesso' => ['required', 'integer',],
         'uniorcam' => ['required', 'string', 'digits:4', 'regex:/[0-9]{4}/',],
-        'projativ' => ['required', 'regex:/[0|1|2]([0-9]{3})/'],
+        'projativ' => ['required', 'regex:/[0|1|2|9]([0-9]{3})/'],
         'despesa' => ['required', 'string', 'digits:6', 'regex:/[0-9]{6}/',],
         'fonte' => ['required', 'string', 'digits:5', 'regex:/[0-9]{5}/',],
         'complemento' => ['string', 'digits:4', 'regex:/[0-9]{4}/', 'nullable'],
