@@ -97,7 +97,7 @@ class VinculoController extends Controller
             $record->credito_id = $credito_id;
             $record->decreto_id = $decreto_id;
             $record->reducao_id = $reducao_id;
-            $record->limite = $this->{'calcLimite'.$decreto->lei->exercicio}($record);
+            $record->limite = $this->{'calcLimite' . $decreto->lei->exercicio}($record);
             $record->save();
             return redirect()->route('decreto.credito.vincular.reducao', ['decreto_id' => $decreto_id, 'credito_id' => $credito_id])->with('success', 'Redução vinculada com sucesso!');
         } catch (\Throwable $th) {
@@ -153,21 +153,25 @@ class VinculoController extends Controller
             $credito = Credito::find($credito_id);
             $reducao = Reducao::find($reducao_id);
             $messages = [];
-            if($credito->rubrica->fonte != $reducao->rubrica->fonte){
+            if ($credito->rubrica->fonte != $reducao->rubrica->fonte) {
                 $messages[] = sprintf('Credito no acesso %d: A redução na fonte %s está sendo vinculada a um crédito com a fonte %s.', $credito->acesso, Fmt::fonte($credito->rubrica->fonte), Fmt::fonte($reducao->rubrica->fonte));
             }
 
-            if(($credito->rubrica->uniorcam == env('UNIORCAM_CAMARA'))
-                && ($reducao->rubrica->uniorcam != env('UNIORCAM_CAMARA'))) {
-                    $messages[] = 'Créditos na unidade orçamentária da Câmara com redução em unidade orçamentária que não é da Câmara.';
+            if (
+                ($credito->rubrica->uniorcam == env('UNIORCAM_CAMARA'))
+                && ($reducao->rubrica->uniorcam != env('UNIORCAM_CAMARA'))
+            ) {
+                $messages[] = 'Créditos na unidade orçamentária da Câmara com redução em unidade orçamentária que não é da Câmara.';
             }
 
-            if(($credito->rubrica->uniorcam != env('UNIORCAM_CAMARA'))
-                && ($reducao->rubrica->uniorcam == env('UNIORCAM_CAMARA'))) {
-                    $messages[] = 'Créditos em unidade orçamentária que não é da Câmara com redução em unidade orçamentária da Câmara.';
+            if (
+                ($credito->rubrica->uniorcam != env('UNIORCAM_CAMARA'))
+                && ($reducao->rubrica->uniorcam == env('UNIORCAM_CAMARA'))
+            ) {
+                $messages[] = 'Créditos em unidade orçamentária que não é da Câmara com redução em unidade orçamentária da Câmara.';
             }
 
-            if(sizeof($messages) > 0){
+            if (sizeof($messages) > 0) {
                 return view('app.decreto.vincular.confirm', [
                     'messages' => $messages,
                     'cancel' => route('decreto.credito.vincular.reducao', compact('decreto_id', 'credito_id')),
@@ -190,15 +194,15 @@ class VinculoController extends Controller
             $credito = Credito::find($credito_id);
             $excesso = Excesso::find($excesso_id);
             $messages = [];
-            if($credito->rubrica->fonte != $excesso->fonte){
+            if ($credito->rubrica->fonte != $excesso->fonte) {
                 $messages[] = sprintf('O excesso na fonte %s está sendo vinculado a um crédito com a fonte %s.', Fmt::fonte($credito->rubrica->fonte), Fmt::fonte($excesso->fonte));
             }
 
-            if($credito->rubrica->uniorcam == env('UNIORCAM_CAMARA')) {
-                    $messages[] = 'Créditos na unidade orçamentária da Câmara não deveriam ser por excesso de arrecadação';
+            if ($credito->rubrica->uniorcam == env('UNIORCAM_CAMARA')) {
+                $messages[] = 'Créditos na unidade orçamentária da Câmara não deveriam ser por excesso de arrecadação';
             }
 
-            if(sizeof($messages) > 0){
+            if (sizeof($messages) > 0) {
                 return view('app.decreto.vincular.confirm', [
                     'messages' => $messages,
                     'cancel' => route('decreto.credito.vincular.excesso', compact('decreto_id', 'credito_id')),
@@ -221,15 +225,15 @@ class VinculoController extends Controller
             $credito = Credito::find($credito_id);
             $superavit = Superavit::find($superavit_id);
             $messages = [];
-            if($credito->rubrica->fonte != $superavit->fonte){
+            if ($credito->rubrica->fonte != $superavit->fonte) {
                 $messages[] = sprintf('O superávit na fonte %s está sendo vinculado a um crédito com a fonte %s.', Fmt::fonte($credito->rubrica->fonte), Fmt::fonte($superavit->fonte));
             }
 
-            if($credito->rubrica->uniorcam == env('UNIORCAM_CAMARA')) {
-                    $messages[] = 'Créditos na unidade orçamentária da Câmara não deveriam ser por superávit financeiro';
+            if ($credito->rubrica->uniorcam == env('UNIORCAM_CAMARA')) {
+                $messages[] = 'Créditos na unidade orçamentária da Câmara não deveriam ser por superávit financeiro';
             }
 
-            if(sizeof($messages) > 0){
+            if (sizeof($messages) > 0) {
                 return view('app.decreto.vincular.confirm', [
                     'messages' => $messages,
                     'cancel' => route('decreto.credito.vincular.superavit', compact('decreto_id', 'credito_id')),
@@ -274,7 +278,7 @@ class VinculoController extends Controller
             $record->credito_id = $credito_id;
             $record->decreto_id = $decreto_id;
             $record->excesso_id = $excesso_id;
-            $record->limite = $this->{'calcLimite'.$decreto->lei->exercicio}($record);
+            $record->limite = $this->{'calcLimite' . $decreto->lei->exercicio}($record);
             $record->save();
             return redirect()->route('decreto.credito.vincular.excesso', ['decreto_id' => $decreto_id, 'credito_id' => $credito_id])->with('success', 'Excesso vinculado com sucesso!');
         } catch (\Throwable $th) {
@@ -349,7 +353,7 @@ class VinculoController extends Controller
             $record->credito_id = $credito_id;
             $record->decreto_id = $decreto_id;
             $record->superavit_id = $superavit_id;
-            $record->limite = $this->{'calcLimite'.$decreto->lei->exercicio}($record);
+            $record->limite = $this->{'calcLimite' . $decreto->lei->exercicio}($record);
             $record->save();
             return redirect()->route('decreto.credito.vincular.superavit', ['decreto_id' => $decreto_id, 'credito_id' => $credito_id])->with('success', 'Superávit vinculado com sucesso!');
         } catch (\Throwable $th) {
@@ -368,9 +372,12 @@ class VinculoController extends Controller
             $decreto = \App\Models\Decreto::find($record->decreto_id);
             $credito = \App\Models\Credito::find($record->credito_id);
 
-            if ($record->reducao_id) $route = 'decreto.credito.vincular.reducao';
-            if ($record->excesso_id) $route = 'decreto.credito.vincular.excesso';
-            if ($record->superavit_id) $route = 'decreto.credito.vincular.superavit';
+            if ($record->reducao_id)
+                $route = 'decreto.credito.vincular.reducao';
+            if ($record->excesso_id)
+                $route = 'decreto.credito.vincular.excesso';
+            if ($record->superavit_id)
+                $route = 'decreto.credito.vincular.superavit';
 
 
             $record->delete();
@@ -381,6 +388,17 @@ class VinculoController extends Controller
     }
 
     protected function calcLimite2024($vinculo)
+    {
+        $decreto = Decreto::find($vinculo->decreto_id);
+        switch ($decreto->lei->tipo) {
+            case 'LOA':
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    protected function calcLimite2025($vinculo)
     {
         $decreto = Decreto::find($vinculo->decreto_id);
         switch ($decreto->lei->tipo) {
