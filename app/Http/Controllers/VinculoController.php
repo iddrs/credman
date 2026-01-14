@@ -408,4 +408,15 @@ class VinculoController extends Controller
                 return false;
         }
     }
+    
+    protected function calcLimite2026($vinculo)
+    {
+        $decreto = Decreto::find($vinculo->decreto_id);
+        switch ($decreto->lei->tipo) {
+            case 'LOA':
+                return true;
+            default:
+                return false;
+        }
+    }
 }
